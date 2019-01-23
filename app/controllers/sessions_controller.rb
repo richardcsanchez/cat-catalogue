@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     end
     return redirect_to root_path unless user
     session[:user_id] = user.id
-    redirect_to user_path
+    redirect_to user_path(user.id)
   end
 
   def destroy

@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
 
   def create
     if auth
-      user = User.find_by(email: auth["info"]["email"])
+      user = User.find_or_create_by_omniauth(auth)
     else
       #regular login
       user = User.find_by(email: params[:user][:email])
       user = user.try(:authenticate, params[:user][:password])
     end
-    return redirect_to new_user_path unless user
+    return redirect_to root_path unless user
     session[:user_id] = user.id
-    redirect_to user_path(user)
+    redirect_to user_path
   end
 
   def destroy

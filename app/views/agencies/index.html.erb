@@ -1,0 +1,11 @@
+<h1>All Cat Adoption Agencies</h1>
+
+<%@agencies.each do |a|%>
+<ul>
+  <%= link_to a.name, agency_path(a)%> - <%=a.state%>
+</ul>
+<%end%>
+
+<%if current_user.admin?%>
+  <%=link_to "New Agency", new_agency_path%>
+  <%end%>

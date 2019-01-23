@@ -1,0 +1,17 @@
+<h1><%=@cat.name%></h1>
+<h4><%=link_to @cat.agency.name, agency_path(@cat.agency)%></h4>
+<h4><%=@cat.sex%></h4>
+<h4><%=@cat.age%> Years Old</h4>
+<h4>Cat-itude: <%=@cat.disposition%></h4>
+<h4>Spayed/Neutered? <%=@cat.neutered?%></h4>
+<h4>Cost to Adopt: $<%=@cat.cost%></h4>
+
+<br>
+
+<% if current_user.admin? %>
+<%= link_to "Edit Cat", edit_cat_path(@cat)%>
+<%= link_to 'Delete',
+             cat_path(@cat),
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' } %>
+<%end%>

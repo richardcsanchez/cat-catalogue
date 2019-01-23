@@ -1,0 +1,30 @@
+<%= form_for @agency do |f|%>
+
+<%=f.label 'name'%>: <br>
+<%=f.text_field :name %> <br>
+<br>
+<%=f.label 'street_1'%>: <br>
+<%=f.text_field :street_1 %> <br>
+<br>
+<%=f.label 'street_2'%>: <br>
+<%=f.text_field :street_2 %> <br>
+<br>
+<%=f.label 'city'%>: <br>
+<%=f.text_field :city %> <br>
+<br>
+<%=f.label 'state'%>: <br>
+<%= f.select :state, options_for_select(us_states) %> <br>
+<br>
+<%= f.label 'zip_code', 'Zip Code' %>:<br>
+<%= f.text_field :zip_code%><br>
+<br>
+<%= f.label 'email' %>:<br>
+<%= f.text_field :email%><br>
+<br>
+<%=f.label 'phone_number', 'Phone Number'%>:  <br>
+<%=f.text_field :phone_number %> <br>
+<br>
+<%= f.submit "Submit" %>
+<%end%>
+
+<br>

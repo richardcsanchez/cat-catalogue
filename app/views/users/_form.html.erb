@@ -1,0 +1,22 @@
+<h4> =^.^= </h4>
+<%= form_for @user do |f|%>
+
+<%=f.label 'name'%> <br>
+<%=f.text_field :name %> <br>
+<br>
+<%=f.label 'email'%> <br>
+<%=f.text_field :email %> <br>
+<br>
+<%=f.label 'money'%> <br>
+$<%=f.text_field :money %> <br>
+<br>
+<%=f.label 'password'%> <br>
+<%=f.password_field :password %> <br>
+<br>
+<%= f.label :admin, "Are you an Admin?" %>
+<%= f.check_box :admin, class: "form-check-input" %><br>
+<br>
+<%= f.submit "Submit" %>
+<%end%>
+<br>
+

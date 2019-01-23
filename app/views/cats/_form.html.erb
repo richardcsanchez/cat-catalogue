@@ -1,0 +1,33 @@
+<%= form_for @cat do |f|%>
+
+<%=f.label 'name'%>: <br>
+<%=f.text_field :name %> <br>
+<br>
+<%=f.label 'breed'%>: <br>
+<%=f.text_field :breed %> <br>
+<br>
+<%=f.label 'age'%>: <br>
+<%=f.text_field :age %> <br>
+<br>
+<%=f.label 'sex'%>: <br>
+<%= f.select :sex, [["Male", "Male"], ["Female", "Female"], ["Unknown", "Unknown"]], {}, {class: "form-control"} %><br>
+<br>
+<%= f.label :disposition %>:<br>
+<%= f.text_field :disposition%><br>
+<br>
+<%= f.label :cost, "Cost to Adopt" %>:<br>
+$<%= f.text_field :cost%><br>
+<br>
+<%= f.label :neutered, "Spayed/Neutered?" %><br>
+<%= f.check_box :neutered%> Yes <br>
+<br>
+<%=f.label 'image', "Image Link"%>: <br>
+<%=f.text_field :image %> <br>
+<br>
+<%= f.label :agency_id, "Adoption Agency"%>: <br>
+<%= f.collection_select(:agency_id, Agency.all, :id, :name) %><br>
+<br>
+<%= f.submit "Submit" %>
+<%end%>
+
+<br>

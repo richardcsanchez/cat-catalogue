@@ -1,0 +1,8 @@
+<h1>Welcome <%=@user.name%></h1>
+  <ul>
+    <p><%=@user.email%>
+    <p>$<%=@user.money%>
+  </ul>
+
+<p><%= link_to 'Edit User', edit_user_path(@user)%>
+<p><%= link_to 'Log Out', signout_path%><p>

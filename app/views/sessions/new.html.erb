@@ -1,0 +1,13 @@
+<h1>Sign In!</h1>
+<%= form_for :user do |f| %>
+<%= f.label :email %>
+<%= f.text_field :email %><br>
+
+<%= f.label :password %>
+<%= f.password_field :password %><br>
+
+<%= f.submit "Log In"%>
+<br>
+<br>
+Or <%= link_to(controller: 'users', action: 'new') { 'Sign Up' } %>
+<% end %>

@@ -5,22 +5,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # if
+    if auth
+      user = User.find_by(email: auth["info"]["email"])
+    else
+      #regular login
       user = User.find_by(email: params[:user][:email])
       user = user.try(:authenticate, params[:user][:password])
-      return redirect_to(controller: 'sessions', action: 'new') unless user
-      session[:user_id] = user.id
-      redirect_to user_path(user)
-    # else
-    #   @user = User.find_or_create_by(uid: auth['uid']) do |u|
-    #   u.name = auth['info']['name']
-    #   u.email = auth['info']['email']
-    #   u.image = auth['info']['image']
-    # end
+    end
+    return redirect_to new_user_path unless user
+    session[:user_id] = user.id
+    redirect_to user_path(user)
   end
 
   def destroy
-    session.delete :user_id
+    reset_session
     redirect_to root_path
   end
 

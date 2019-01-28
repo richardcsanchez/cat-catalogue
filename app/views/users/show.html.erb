@@ -3,6 +3,18 @@
     <p><%=@user.email%>
     <p>$<%=@user.money%>
   </ul>
+<%if !@user.admin?%>
+<h4> Your Cats </h4>
+  <%@user.cats.each do |c| %>
+  <ul><%=link_to c.name, cat_path(c)%></ul>
+  <%end%>
+
+  <%elsif @user.admin?%>
+  <%User.personal_cat_collection.each do |c|%>
+  <ul><%=c.name%></ul>
+  <%end%>
+  <%end%>
+
 
 <p><%= link_to 'Edit User', edit_user_path(@user)%>
 <p><%= link_to 'Log Out', signout_path%><p>

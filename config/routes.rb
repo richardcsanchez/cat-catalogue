@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     post "/cats", to: "cats#create"
     delete "/cats", to: "cats#destroy"
     get "/agency/:id/cats", to: "agencies#cats_by_agency"
-    get '/auth/facebook/callback' => 'sessions#create'
+    get '/auth/facebook/callback', to: 'sessions#create'
+    get '/cats/:id/adopt', to: 'users#cat_adoption', as: 'adopt_cat'
     resources :cats
 
     resources :agencies do

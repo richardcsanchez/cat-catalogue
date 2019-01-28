@@ -4,8 +4,13 @@ class Cat < ApplicationRecord
 
   validates :name, :breed, :disposition, :age, :sex, :agency_id, presence: :true
 
+  def adopt_me
+    self.owner_id = current_user.id
+    current_user.money = (current_user.money - self.cost)
+  end
+
   def adopted?
-    self.adopted == true
+    if self.owner_id == true
   end
 
   def neutered?

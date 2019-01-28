@@ -45,10 +45,12 @@ class CatsController < ApplicationController
       redirect_to cats_path
   end
 
+  
+
   private
 
 
   def cat_params
-   params.require(:cat).permit(:name, :age, :breed, :sex, :disposition, :cost, :adopted, :neutered, :image, :agency_id)
+   params.require(:cat).permit(:name, :age, :breed, :sex, :disposition, :cost, :adopted, :neutered, :image, :agency_id, :owner_id)
   end
 end

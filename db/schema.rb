@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190123201728) do
+ActiveRecord::Schema.define(version: 20190128192308) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20190123201728) do
     t.boolean "neutered"
     t.string "image"
     t.integer "agency_id"
+    t.integer "owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20190123201728) do
     t.string "name"
     t.integer "money"
     t.boolean "admin"
+    t.integer "owner_id"
   end
 
 end

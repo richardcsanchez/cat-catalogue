@@ -9,11 +9,17 @@ class User < ApplicationRecord
   has_many :cats
   has_many :agencies, through: :cats
 
+  def self.personal_cat_collection
+    includes('cats').where(cat.owner_id == self.id)
+  end
+
   def adopt_cat(cat)
-    cat.owner_id = self.id
-    self.money -= cat.cost
-    self.cats << cat
-    self.save
+    if self.money >= cat.cost
+      cat.owner_id = self.id
+      self.money -= cat.cost
+      self.cats << cat
+      self.save
+    end
   end
 
   def self.find_or_create_by_omniauth(auth)

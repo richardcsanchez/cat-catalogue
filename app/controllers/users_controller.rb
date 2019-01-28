@@ -29,11 +29,18 @@ class UsersController < ApplicationController
       end
     end
 
+    def cat_adoption
+      @user = User.find_by_id(session["user_id"])
+      @cat = Cat.find_by_id(params[:id])
+      @user.adopt_cat(@cat)
+      redirect_to cat_path(@cat)
+    end
+
   private
 
 
   def user_params
-   params.require(:user).permit(:name, :password, :email, :money, :admin)
+   params.require(:user).permit(:name, :password, :email, :money, :admin, :owner_id)
   end
 
 

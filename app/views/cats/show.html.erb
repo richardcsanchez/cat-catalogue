@@ -5,6 +5,13 @@
 <h4>Cat-itude: <%=@cat.disposition%></h4>
 <h4>Spayed/Neutered? <%=@cat.neutered?%></h4>
 <h4>Cost to Adopt: $<%=@cat.cost%></h4>
+  <% if @cat.adopted? %>
+  <h4>Owner: <%= @cat.owner_name%></h4>
+  <%end%>
+<br>
+<% if !@cat.adopted?%>
+<%= link_to 'Adopt Me!', adopt_cat_path(@cat)%>
+<%end%>
 
 <br>
 

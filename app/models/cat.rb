@@ -8,6 +8,10 @@ class Cat < ApplicationRecord
     where(owner_id: user)
   end
 
+  def self.all_breeds
+    self.all.collect {|c| c.breed}
+  end
+
   def self.adoptable
     where(owner_id: nil)
   end

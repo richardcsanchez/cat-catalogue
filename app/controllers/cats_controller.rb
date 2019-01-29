@@ -18,7 +18,9 @@ class CatsController < ApplicationController
   end
 
   def new
-    @cat = Cat.new
+    if !if_not_admin
+      @cat = Cat.new
+    end
   end
 
   def create
@@ -36,7 +38,9 @@ class CatsController < ApplicationController
   end
 
   def edit
-    @cat = Cat.find_by_id(params[:id])
+    if !if_not_admin
+      @cat = Cat.find_by_id(params[:id])
+    end
   end
 
   def update
@@ -49,10 +53,13 @@ class CatsController < ApplicationController
   end
 
   def destroy
+    if !if_not_admin
     @cat = Cat.find_by_id(params[:id])
       @cat.destroy
       redirect_to cats_path
+    end
   end
+
 
 
 

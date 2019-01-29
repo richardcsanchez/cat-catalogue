@@ -1,6 +1,10 @@
 class AgenciesController < ApplicationController
   def new
-    @agency = Agency.new
+    if !admin?
+      redirect_to_current_user
+    else
+      @agency = Agency.new
+    end
   end
 
   def create
@@ -17,7 +21,11 @@ class AgenciesController < ApplicationController
   end
 
   def edit
-    @agency = Agency.find_by_id(params[:id])
+    if !admin?
+      redirect_to_current_user
+    else
+      @agency = Agency.new
+    end
   end
 
   def index

@@ -23,8 +23,7 @@ class User < ApplicationRecord
   end
 
   def self.find_by_omniauth(auth)
-    oauth_email = auth["info"]['email']
-    user = User.find_by(email: oauth_email)
-    end
+    user = User.find_by_email(auth["info"]['email'])
+  end
 
   end

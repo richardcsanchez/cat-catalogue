@@ -9,13 +9,14 @@
     <%= select_tag :state, options_for_select(us_states), include_blank: true %>
     <%= submit_tag "Filter by State" %>
 
-    <%= collection_select(:cat, :breed, @cats, :id, :breed, include_blank: true) %>
+    <%= select_tag :breed, options_for_select(Cat.adoptable.all_breeds), include_blank: true %>
     <%= submit_tag "Filter by Breed" %>
  <% end %>
 
   <% @cats.each do |c| %>
   <ul>
       <%=link_to c.name, agency_cat_path(c.agency, c)%> -
+      <%=c.breed%> -
       <%=link_to c.agency.name, agency_path(c.agency)%> -
       <%=c.agency.state%>
       </ul>

@@ -2,6 +2,9 @@
 
 <%if @agency%>
   <h4>Cats at <%=@agency.name%></h4>
+  <%@agency.cats.adoptable.each do |c|%>
+  <%=link_to c.name, agency_cat_path(c.agency, c)%> -<%=c.breed%>
+  <%end%>
   <%else%>
   <h4>All Cats</h4>
   <h3>Filter Cats:</h3>
@@ -23,3 +26,4 @@
   <%end%>
 
   <%end%>
+<br><br><br>

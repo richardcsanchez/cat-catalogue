@@ -4,6 +4,10 @@ class Cat < ApplicationRecord
 
   validates :name, :breed, :disposition, :age, :sex, :agency_id, presence: :true
 
+  def self.personal_cat_collection(user)
+    where(owner_id: user)
+  end
+
   def self.adoptable
     where(owner_id: nil)
   end

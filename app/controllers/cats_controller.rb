@@ -2,10 +2,18 @@ class CatsController < ApplicationController
 
   def index
     if @agency = Agency.find_by_id(params["agency_id"])
-      @cats = @agency.cats
+      @cats = @agency.cats.adoptable
+    end
+
+    if !params[:state].blank? && Agency.find_by_state(params[:state]) != nil
+      @cats = Cat.by_state(params[:state]).adoptable
+
+    elsif !params[:breed].blank?
+      @cats = Cat.find_by_breed(params[:breed])
     else
-    @cats = Cat.all
-  end
+      @cats = Cat.adoptable
+    end
+
   end
 
   def new
@@ -45,7 +53,7 @@ class CatsController < ApplicationController
       redirect_to cats_path
   end
 
-  
+
 
   private
 

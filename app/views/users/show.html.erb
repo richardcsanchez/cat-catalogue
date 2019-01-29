@@ -3,16 +3,22 @@
     <p><%=@user.email%>
     <p>$<%=@user.money%>
   </ul>
-<%if !@user.admin?%>
+
 <h4> Your Cats </h4>
+  <%if !@user.admin?%>
   <%@user.cats.each do |c| %>
   <ul><%=link_to c.name, cat_path(c)%></ul>
   <%end%>
 
   <%elsif @user.admin?%>
-  <%User.personal_cat_collection.each do |c|%>
-  <ul><%=c.name%></ul>
+  <%Cat.personal_cat_collection(@user).each do |c|%>
+    <ul><%=link_to c.name, cat_path(c)%></ul>
   <%end%>
+
+<h4>Cats You've Put Up for Adoption</h4>
+    <%@user.cats.each do |c| %>
+    <ul><%=link_to c.name, cat_path(c)%> - <%=link_to c.agency.name, agency_path(c.agency)%></ul>
+    <%end%>
   <%end%>
 
 

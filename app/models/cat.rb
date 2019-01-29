@@ -7,7 +7,16 @@ class Cat < ApplicationRecord
   def self.adoptable
     where(owner_id: nil)
   end
-  
+
+  def self.by_breed(breed)
+    where(breed: breed)
+  end
+
+  def self.by_state(state)
+     @agencies = Agency.find_by_state(state)
+     @agencies.cats
+  end
+
   def adopted?
     true if self.owner_id
   end

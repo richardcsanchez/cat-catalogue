@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  validates :name, :email, presence: true
+  validates :email, presence: true
 
   include EmailValidatable
   validates :email, uniqueness: true
@@ -22,10 +22,13 @@ class User < ApplicationRecord
     end
   end
 
-  def self.find_or_create_by_omniauth(auth)
-    self.where(email: auth["info"]["email"]).first_or_create do |user|
-      user.password = SecureRandom.hex
+  def self.find_or_create_by_omniauth(auth_hash)
+    oauth_email = auth_hash["info"]['email']
+    if user = User.find_by(email: oauth_email)
+      return user
+    else
+      user = User.create(email: oauth_email, password: SecureRandom.hex)
     end
-  end
+    end
 
-end
+  end

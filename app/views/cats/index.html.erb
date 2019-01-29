@@ -5,12 +5,12 @@
   <%else%>
   <h4>All Cats</h4>
   <h3>Filter Cats:</h3>
- <%= form_tag("/cats", method: "get") do %>
-  <%= select_tag :state, options_for_select(us_states), include_blank: true %>
-   <%= submit_tag "Filter by State" %>
+    <%= form_tag("/cats", method: "get") do %>
+    <%= select_tag :state, options_for_select(us_states), include_blank: true %>
+    <%= submit_tag "Filter by State" %>
 
-   <%= select_tag :breed, options_from_collection_for_select(@cats, 'id', 'breed'), include_blank: true %>
-   <%= submit_tag "Filter by Breed" %>
+    <%= collection_select(:cat, :breed, @cats, :id, :breed, include_blank: true) %>
+    <%= submit_tag "Filter by Breed" %>
  <% end %>
 
   <% @cats.each do |c| %>

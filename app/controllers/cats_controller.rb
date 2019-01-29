@@ -9,7 +9,8 @@ class CatsController < ApplicationController
       @cats = Cat.by_state(params[:state]).adoptable
 
     elsif !params[:breed].blank?
-      @cats = Cat.find_by_breed(params[:breed])
+      @cats = Cat.by_breed('breed')
+
     else
       @cats = Cat.adoptable
     end

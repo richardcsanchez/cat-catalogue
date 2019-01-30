@@ -1,31 +1,44 @@
+<% if @cat.errors.any? %>
+  <div id="error_explanation">
+    <h4>We were unable to save this cat...</h4>
+
+    <ul>
+    <% @cat.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form_for @cat do |f|%>
 
-<%=f.label 'name'%>: <br>
+<%=f.label 'name'':'%> <br>
 <%=f.text_field :name %> <br>
 <br>
-<%=f.label 'breed'%>: <br>
+<%=f.label 'breed'':'%> <br>
 <%=f.text_field :breed %> <br>
 <br>
-<%=f.label 'age'%>: <br>
+<%=f.label 'age'':'%> <br>
 <%=f.text_field :age %> <br>
 <br>
-<%=f.label 'sex'%>: <br>
-<%= f.select :sex, [["Male", "Male"], ["Female", "Female"], ["Unknown", "Unknown"]], {}, {class: "form-control"} %><br>
+<%=f.label 'sex'':'%> <br>
+<%=f.select :sex, options_for_select(['Unknown', 'Male', 'Female'])%><br>
 <br>
-<%= f.label :disposition %>:<br>
+<%= f.label 'disposition'':' %><br>
 <%= f.text_field :disposition%><br>
 <br>
-<%= f.label :cost, "Cost to Adopt" %>:<br>
+<%= f.label :cost, "Cost to Adopt:" %><br>
 $<%= f.text_field :cost%><br>
 <br>
 <%= f.label :neutered, "Spayed/Neutered?" %><br>
 <%= f.check_box :neutered%> Yes <br>
 <br>
-<%=f.label 'image', "Image Link"%>: <br>
+<%=f.label 'image', "Image Link:"%> <br>
 <%=f.text_field :image %> <br>
 <br>
-<%= f.label :agency_id, "Adoption Agency"%>: <br>
-<%= f.collection_select(:agency_id, Agency.all, :id, :name) %><br>
+<%= f.label :agency_id, "Adoption Agency:"%> <br>
+<%= f.select :agency_id, options_for_select(Agency.all_agencies), include_blank: true %><br>
 <br>
 <%= f.submit "Submit" %>
 <%end%>

@@ -9,7 +9,8 @@ class Cat < ApplicationRecord
   end
 
   def self.all_breeds
-    self.all.collect {|c| c.breed}
+    self.adoptable.collect {|c| c.breed}.uniq
+
   end
 
   def self.adoptable
@@ -23,6 +24,10 @@ class Cat < ApplicationRecord
   def self.by_state(state)
      @agencies = Agency.find_by_state(state)
      @agencies.cats
+  end
+
+  def state
+    self.agency.state
   end
 
   def adopted?

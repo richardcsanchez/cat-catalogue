@@ -10,7 +10,12 @@ class Agency < ApplicationRecord
   validates :email, uniqueness: true
   validates :email, email: true
 
-  def agency_name
-    self.find(params[:id]).name
+  def self.all_agencies
+    Agency.all.collect {|a| [a.name, a.id]}
   end
+
+  def self.agency_states(state)
+    where(state: state)
+  end
+
 end

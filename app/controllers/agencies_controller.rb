@@ -24,7 +24,7 @@ class AgenciesController < ApplicationController
     if !admin?
       redirect_to_current_user
     else
-      @agency = Agency.new
+      @agency = Agency.find(params[:id])
     end
   end
 

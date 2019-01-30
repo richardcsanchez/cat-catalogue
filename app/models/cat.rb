@@ -8,13 +8,12 @@ class Cat < ApplicationRecord
     where(owner_id: user)
   end
 
-  def self.all_breeds
+  def self.all_adoptable_breeds
     self.adoptable.collect {|c| c.breed}.uniq
-
   end
 
   def self.adoptable
-    where(owner_id: nil)
+    where(adopted: false)
   end
 
   def self.by_breed(breed)
@@ -31,7 +30,7 @@ class Cat < ApplicationRecord
   end
 
   def adopted?
-    true if self.owner_id
+    self.adopted
   end
 
   def owner_name

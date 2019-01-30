@@ -12,7 +12,7 @@
     <%= select_tag :state, options_for_select(us_states), include_blank: true %>
     <%= submit_tag "Filter by State" %>
 
-    <%= select_tag :breed, options_for_select(Cat.all_breeds), include_blank: true %>
+    <%= select_tag :breed, options_for_select(Cat.all_adoptable_breeds), include_blank: true %>
     <%= submit_tag "Filter by Breed" %>
  <% end %>
 

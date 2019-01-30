@@ -1,4 +1,17 @@
-<h4> =^.^= </h4>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h4>
+      We were unable to save this user...
+    </h4>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @user do |f|%>
 
 <%=f.label 'name'%> <br>
@@ -19,4 +32,3 @@ $<%=f.text_field :money %> <br>
 <%= f.submit "Submit" %>
 <%end%>
 <br>
-

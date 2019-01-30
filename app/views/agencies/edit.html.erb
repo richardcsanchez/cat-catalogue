@@ -1,19 +1,5 @@
-<% if @agency.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@agency.errors.count, "error") %>
-      prohibited this post from being saved:
-    </h2>
-
-    <ul>
-    <% @agency.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
+<h2> Edit <%=@agency.name%> </h2>
 
 <%= render 'form'%>
 
-<%= link_to 'Back', agency_path(@agency) %>
+<%= link_to 'Back', agency_path %>

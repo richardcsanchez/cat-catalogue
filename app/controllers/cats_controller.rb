@@ -8,8 +8,8 @@ class CatsController < ApplicationController
     if !params[:state].blank? && Agency.find_by_state(params[:state])
       @cats = Cat.by_state(params[:state]).adoptable
 
-    elsif !params[:breed].blank? && params[:state].blank?
-      @cats = Cat.by_breed(params[:breed]).adoptable
+    elsif !params[:breed].blank?
+      @cats = Cat.by_breed(params[:breed])
 
     else
       @cats = Cat.adoptable

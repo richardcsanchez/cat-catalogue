@@ -14,8 +14,8 @@ class Agency < ApplicationRecord
     Agency.all.collect {|a| [a.name, a.id]}
   end
 
-  def self.agency_states(state)
+  def self.in_state(state)
     where(state: state)
-  end
+  end 
 
 end

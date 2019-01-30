@@ -6,7 +6,7 @@ class CatsController < ApplicationController
     end
 
     if !params[:state].blank? && Agency.find_by_state(params[:state])
-      @cats = Cat.by_state(params[:state]).adoptable
+      @cats = Cat.by_state(params[:state])
 
     elsif !params[:breed].blank?
       @cats = Cat.by_breed(params[:breed])

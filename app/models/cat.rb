@@ -22,8 +22,8 @@ class Cat < ApplicationRecord
   end
 
   def self.by_state(state)
-     @agencies = Agency.find_by_state(state)
-     @agencies.cats
+    @agencies = Agency.find_by_state(state)
+    @agencies.cats.adoptable
   end
 
   def state

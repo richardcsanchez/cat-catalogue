@@ -16,9 +16,11 @@ class User < ApplicationRecord
   def adopt_cat(cat)
     if self.money >= cat.cost
       cat.owner_id = self.id
+      cat.adopted = true
       self.money -= cat.cost
       self.cats << cat
       self.save
+      cat.save
     end
   end
 

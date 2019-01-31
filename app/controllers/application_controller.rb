@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :current_user
   before_action :require_logged_in
-  helper_method :current_user, :logged_in?, :admin?, :if_not_admin
+  helper_method :current_user, :logged_in?, :admin?
+
 
   def logged_in?
     session[:user_id]
@@ -13,13 +14,13 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_current_user
-    @user = User.find_by_id(session[:user_id])
-      redirect_to user_path(@user)
-    end
+    redirect_to current_user
+  end
 
-    def if_not_admin
+    def admin_access_only
       if !admin?
-        redirect_to_current_user
+        flash[:notice] = "You must be an admin to view that page"
+        redirect_to current_user
       end
     end
 
@@ -29,10 +30,6 @@ class ApplicationController < ActionController::Base
 
   def admin?
     current_user.admin if logged_in?
-  end
-
-  def user_name
-    current_user.name
   end
 
 end

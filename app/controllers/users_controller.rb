@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_logged_in, only: [:new, :create]
+  before_action :redirect_to_current_user, only: [:show, :edit, :update, :cat_adoption]
 
   def new
     @user = User.new
@@ -33,8 +34,14 @@ class UsersController < ApplicationController
     def cat_adoption
       @user = User.find_by_id(session["user_id"])
       @cat = Cat.find_by_id(params[:id])
-      @user.adopt_cat(@cat)
-      redirect_to cat_path(@cat)
+      if @user.adopt_cat(@cat)
+        flash[:notice] = "Congratulations! You've adopted #{@cat.name}"
+         redirect_to cat_path(@cat)
+       elsif
+         @user.money < @cat.cost
+         flash[:notice] = "You don't have enough money to adopt this cat"
+         redirect_to cat_path(@cat)
+       end
     end
 
   private

@@ -12,17 +12,20 @@ class Cat < ApplicationRecord
     self.adoptable.collect {|c| c.breed}.uniq
   end
 
+  def self.find_by_state(state)
+    self.adoptable.select do |cat|
+      if cat.state == state
+        cat
+      end
+    end
+  end
+
   def self.adoptable
     where(adopted: false)
   end
 
   def self.by_breed(breed)
     where(breed: breed)
-  end
-
-  def self.by_state(state)
-    @agencies = Agency.find_by_state(state)
-    @agencies.cats.adoptable
   end
 
   def state

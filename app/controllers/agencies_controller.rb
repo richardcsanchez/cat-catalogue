@@ -1,10 +1,8 @@
 class AgenciesController < ApplicationController
+  before_action :admin_access_only, only: [:new, :create, :edit, :update]
+
   def new
-    if !admin?
-      redirect_to_current_user
-    else
       @agency = Agency.new
-    end
   end
 
   def create
@@ -21,11 +19,7 @@ class AgenciesController < ApplicationController
   end
 
   def edit
-    if !admin?
-      redirect_to_current_user
-    else
       @agency = Agency.find(params[:id])
-    end
   end
 
   def index

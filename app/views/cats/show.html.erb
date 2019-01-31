@@ -1,5 +1,10 @@
+<% if flash[:notice] %>
+    <h4><div class="notice"><%= flash[:notice] %></div><h4>
+<% end %>
+
 <h1><%=@cat.name%></h1>
 <h4><%=link_to @cat.agency.name, agency_path(@cat.agency)%></h4>
+<h4><%=@cat.breed%></h4>
 <h4><%=@cat.sex%></h4>
 <h4><%=@cat.age%> Years Old</h4>
 <h4>Cat-itude: <%=@cat.disposition%></h4>

@@ -23,7 +23,7 @@
 <%=f.text_field :age %> <br>
 <br>
 <%=f.label 'sex'':'%> <br>
-<%=f.select :sex, options_for_select(['Unknown', 'Male', 'Female'])%><br>
+<%=f.select :sex, options_for_select(['Unknown', 'Male', 'Female'], selected: @cat.sex || nil), include_blank: true%><br>
 <br>
 <%= f.label 'disposition'':' %><br>
 <%= f.text_field :disposition%><br>
@@ -38,7 +38,7 @@ $<%= f.text_field :cost%><br>
 <%=f.text_field :image %> <br>
 <br>
 <%= f.label :agency_id, "Adoption Agency:"%> <br>
-<%= f.select :agency_id, options_for_select(Agency.all_agencies), include_blank: true %><br>
+<%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || nil), include_blank: true %><br>
 <br>
 <%= f.submit "Submit" %>
 <%end%>

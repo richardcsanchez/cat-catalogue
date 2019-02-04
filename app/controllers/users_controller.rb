@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   skip_before_action :require_logged_in, only: [:new, :create]
-  before_action :redirect_to_current_user, only: [:show, :edit, :update, :cat_adoption]
 
   def new
     @user = User.new

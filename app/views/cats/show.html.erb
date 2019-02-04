@@ -13,14 +13,16 @@
   <% if @cat.adopted? %>
   <h4>Owner: <%= @cat.owner_name%></h4>
   <%end%>
+<img src="<%=@cat.image%>" title="<%=@cat.name%>" />
+<br>
 <br>
 <% if !@cat.adopted?%>
-<%= link_to 'Adopt Me!', adopt_cat_path(@cat)%>
+<h4><%= link_to 'Adopt Me!', adopt_cat_path(@cat)%></h4>
 <%end%>
-
+<br>
 <br>
 
-<% if current_user.admin? %>
+<% if current_user.admin? || @cat.adopted?%>
 <%= link_to "Edit Cat", edit_cat_path(@cat)%>
 <%= link_to 'Delete',
              cat_path(@cat),

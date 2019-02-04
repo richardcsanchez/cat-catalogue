@@ -14,9 +14,9 @@
   <%end%>
 
   <%if @user.admin?%>
-  <h4>Cats You've Put Up for Adoption</h4>
+  <h4>Cats You've Created</h4>
     <%@user.cats.adoptable.each do |c| %>
-    <ul><%=link_to c.name, agency_cat_path(c.agency, c)%> - <%=link_to c.agency.name, agency_path(c.agency)%></ul>
+    <ul><%=link_to c.name, agency_cat_path(c.agency.id, c)%> - <%=link_to c.agency.name, agency_path(c.agency)%></ul>
     <%end%>
   <%end%>
   <br>

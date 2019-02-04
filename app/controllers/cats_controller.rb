@@ -34,7 +34,7 @@ class CatsController < ApplicationController
   end
 
   def show
-    @cat = Cat.find(params[:id])
+    @cat = Cat.find_by_id(params[:id])
   end
 
   def edit
@@ -44,10 +44,14 @@ class CatsController < ApplicationController
   def update
     @cat = Cat.find_by_id(params[:id])
     if @cat.update(cat_params)
-      redirect_to @cat
+      if @cat.adopted?
+        redirect_to user_cat_path(@cat.user_id, @cat)
+      elsif !@cat.adopted?
+        redirect_to agency_cat_path(@cat.agency_id, @cat)
     else
       render :edit
     end
+  end
   end
 
   def destroy
@@ -67,8 +71,8 @@ class CatsController < ApplicationController
 
   def your_cat
     @cat = Cat.find(params[:id])
-    if @cat.adopted == true && @cat.owner_id == current_user.id
-    else redirect_to cats_path
+    if @cat.adopted? && @cat.owner_id != current_user.id
+      redirect_to cats_path
     end
   end
 

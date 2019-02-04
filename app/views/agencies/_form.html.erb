@@ -24,7 +24,7 @@
 <%=f.text_field :city %> <br>
 <br>
 <%=f.label 'state'':'%> <br>
-<%= f.select :state, options_for_select(us_states), include_blank: true %> <br>
+<%= f.select :state, options_for_select(us_states, selected: @agency.state || nil), include_blank: true %> <br>
 <br>
 <%= f.label 'zip_code', 'Zip Code:' %><br>
 <%= f.text_field :zip_code%><br>

@@ -16,7 +16,7 @@
     <%= submit_tag "Filter by Breed" %>
  <% end %>
 
-  <% @cats.adoptable.each do |c| %>
+  <% @cats.each do |c| %>
   <ul>
       <%=link_to c.name, agency_cat_path(c.agency, c)%> -
       <%=c.breed%> -

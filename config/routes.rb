@@ -5,19 +5,21 @@ Rails.application.routes.draw do
     get '/signout', to: 'sessions#destroy'
     post '/cats', to: 'cats#create'
     delete '/cats', to: 'cats#destroy'
-    get '/agency/:id/cats', to: 'agencies#cats_by_agency'
     get '/auth/facebook/callback', to: 'sessions#create'
     get '/cats/:id/adopt', to: 'users#cat_adoption', as: 'adopt_cat'
-    get '/users/:id/cats', to: 'users#cats_by_user'
+
+    get '/cats/filter/:state', to: 'cats#index', as: 'filter_by_state'
+    get '/cats/filter/bybreed', to: 'cats#index'
+
 
     resources :cats
 
     resources :agencies do
-      resources :cats, only: [:new, :show, :index, :cats_by_agency]
+      resources :cats, only: [:new, :show, :index, :edit]
     end
 
     resources :users do
-      resources :cats, only: [:show, :index, :edit, :cats_by_user]
+      resources :cats, only: [:show, :index, :edit]
     end
 
     root 'welcome#home'

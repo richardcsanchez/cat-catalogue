@@ -6,10 +6,10 @@ Rails.application.routes.draw do
     post '/cats', to: 'cats#create'
     delete '/cats', to: 'cats#destroy'
     get '/auth/facebook/callback', to: 'sessions#create'
-    get '/cats/:id/adopt', to: 'users#cat_adoption', as: 'adopt_cat'
 
-    get '/cats/filter/:state', to: 'cats#index', as: 'filter_by_state'
-    get '/cats/filter/bybreed', to: 'cats#index'
+    get '/cats/:id/adopt', to: 'users#cat_adoption', as: 'adopt_cat'
+    get '/cats/filter', to: 'cats#index'
+    get '/cats/adoptable', to: 'cats#index'
 
 
     resources :cats

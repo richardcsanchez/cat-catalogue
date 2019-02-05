@@ -15,7 +15,7 @@
   <footer>
     <%if logged_in?%>
     <%=link_to 'Home', user_path(current_user)%>
-    <%=link_to 'All Cats', cats_path%>
+    <%=link_to 'All Cats', cats_adoptable_url%>
     <%=link_to 'All Adoption Agencies', agencies_path%>
     <%end%>
   </footer>

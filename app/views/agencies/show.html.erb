@@ -12,7 +12,7 @@
 <%= link_to "Cats at this Agency", agency_cats_path(@agency.id)%>
 
 <%if current_user.admin?%>
-<%= link_to "Add Cat", new_cat_path%>
+<%= link_to "Add Cat", new_agency_cat_path(@agency.id)%>
 <%= link_to 'Edit', edit_agency_path(@agency)%>
 <%end%>
 <br>

@@ -21,6 +21,7 @@ class CatsController < ApplicationController
 
   def new
       @cat = Cat.new
+      @agency = Agency.find_by_id('agency_id')
   end
 
   def create

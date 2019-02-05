@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :cats
 
     resources :agencies do
-      resources :cats, only: [:show, :index, :cats_by_agency]
+      resources :cats, only: [:new, :show, :index, :cats_by_agency]
     end
 
     resources :users do

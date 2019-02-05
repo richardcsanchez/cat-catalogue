@@ -7,7 +7,7 @@ class CatsController < ApplicationController
       @cats = @agency.cats.adoptable
     end
     if !params[:state].blank? && Agency.find_by_state(params[:state])
-      redirect_to filter_by_state
+      @agency = Agency.find_by_id('agency_id')
 
     elsif !params[:breed].blank?
       @cats = Cat.adoptable.by_breed(params[:breed])
@@ -18,14 +18,8 @@ class CatsController < ApplicationController
 
   end
 
-  def filter_by_state
-    raise params.inspect
-    @cats = Cat.find_by_state(params[:state])
-  end
-
   def new
       @cat = Cat.new
-      @agency = Agency.find_by_id('agency_id')
   end
 
   def create

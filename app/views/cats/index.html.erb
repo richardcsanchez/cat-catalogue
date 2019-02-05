@@ -8,10 +8,12 @@
   <%else%>
   <h4>All Cats</h4>
   <h3>Filter Cats:</h3>
-    <%= form_tag("/cats", method: "get") do %>
+    <%= form_tag(filter_by_state_url(params[:state]), method: "get") do %>
     <%= select_tag :state, options_for_select(us_states), include_blank: true %>
     <%= submit_tag "Filter by State" %>
+    <%end%>
 
+    <%= form_tag("/cats/filter/:breed", method: "get") do %>
     <%= select_tag :breed, options_for_select(Cat.all_adoptable_breeds), include_blank: true %>
     <%= submit_tag "Filter by Breed" %>
  <% end %>

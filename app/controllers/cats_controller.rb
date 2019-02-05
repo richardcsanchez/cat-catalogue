@@ -1,13 +1,13 @@
 class CatsController < ApplicationController
-  before_action :admin_access_only, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_access_only, only: [:new, :create]
   before_action :your_cat, only: [:show, :edit, :update, :destroy]
 
   def index
-    if @agency = Agency.find_by_id(params["agency_id"])
+    if @agency = Agency.find_by_id(params[:agency_id])
       @cats = @agency.cats.adoptable
-    end
-    if !params[:state].blank? && Agency.find_by_state(params[:state])
-      @agency = Agency.find_by_id('agency_id')
+
+    elsif !params[:state].blank? && Agency.find_by_state(params[:state])
+      @cats = Cat.find_by_state(params[:state])
 
     elsif !params[:breed].blank?
       @cats = Cat.adoptable.by_breed(params[:breed])
@@ -15,7 +15,6 @@ class CatsController < ApplicationController
     else
       @cats = Cat.adoptable
     end
-
   end
 
   def new
@@ -70,9 +69,7 @@ class CatsController < ApplicationController
 
   def your_cat
     @cat = Cat.find(params[:id])
-    if @cat.adopted? && @cat.owner_id != current_user.id
-      redirect_to cats_path
-    end
+    redirect_to cats_path unless (@cat.adopted? && @cat.owner_id == current_user.id) || current_user.admin?
   end
 
 end

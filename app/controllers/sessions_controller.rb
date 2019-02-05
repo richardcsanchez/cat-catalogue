@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
     if auth
       user = User.find_by_omniauth(auth)
     else
-      #regular login
       user = User.find_by(email: params[:user][:email])
       user = user.try(:authenticate, params[:user][:password])
     end

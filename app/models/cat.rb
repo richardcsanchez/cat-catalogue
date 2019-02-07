@@ -8,6 +8,10 @@ class Cat < ApplicationRecord
     where(owner_id: user)
   end
 
+  def self.order_by_cost
+    self.order('cost desc')
+  end
+
   def self.all_adoptable_breeds
     self.adoptable.collect {|c| c.breed}.uniq
   end

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get '/cats/:id/adopt', to: 'users#cat_adoption', as: 'adopt_cat'
     get '/cats/filter', to: 'cats#index'
     get '/cats/adoptable', to: 'cats#index'
-
+    get '/cats/filter_by_cost', to: 'cats#filter_by_cost'
 
     resources :cats
 

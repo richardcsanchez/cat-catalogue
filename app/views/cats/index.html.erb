@@ -14,14 +14,19 @@
 
     <%= select_tag :breed, options_for_select(Cat.all_adoptable_breeds), include_blank: true %>
     <%= submit_tag "Filter by Breed" %>
+
  <% end %>
+
+ <%=link_to 'Filter By Cost', cats_filter_by_cost_path%>
 
   <% @cats.each do |c| %>
   <ul>
       <%=link_to c.name, agency_cat_path(c.agency, c)%> -
       <%=c.breed%> -
       <%=link_to c.agency.name, agency_path(c.agency)%> -
-      <%=c.agency.state%>
+      <%=c.agency.state%> -
+      <%=c.cost%>
+
       </ul>
   <%end%>
 

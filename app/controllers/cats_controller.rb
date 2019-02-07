@@ -17,6 +17,11 @@ class CatsController < ApplicationController
     end
   end
 
+  def filter_by_cost
+    @cats = Cat.adoptable.order_by_cost
+    render 'index'
+  end
+
   def new
       @cat = Cat.new
   end

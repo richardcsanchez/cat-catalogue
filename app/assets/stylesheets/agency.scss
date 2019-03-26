@@ -1,3 +1,77 @@
 // Place all the styles related to the agency controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+// .tab-panels ul {
+//     margin: 0;
+//     padding: 0;
+// }
+//
+// .tab-panels ul li {
+//   list-style-type: none;
+//   display: inline-block;
+//   background: #999;
+//   margin: 0;
+//   padding: 3px 10px;
+//   border-radius: 10px 10px 0 0;
+//   color: #fff;
+//   font-weight: 200;
+//   cursor: pointer;
+// }
+//
+// .tab-panels ul li:hover {
+//   color: #A9A9A9;
+//   background: #666
+// }
+//
+// .tab-panels ul li:active {
+//   color: #585858	;
+//   background: #585858	;
+// }
+//
+// .tab-panels .panel {
+//   display: none;
+//   background: #c9c9c9;
+//   padding: 30px;
+//   border-radius: 0 0 10px 10px;
+// }
+//
+// .tab-panels .panel.active{
+//   display: block;
+// }

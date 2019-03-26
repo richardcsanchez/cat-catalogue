@@ -17,16 +17,3 @@
 //1. Allows user to edit Cats w/in the index page
 //2. prepopulated forms
 //3. allows user to save new information about cat or delete or cancel
-
-
-// $(function() {
-//   $('.tab-panels .tabs .li').on("click", function () {
-//     var panelToShow = $(this).attr('rel');
-//     $('.tab-panels .panel.active').slideUp(300, function() {
-//       $('#'+panelToShow).slideDown(300, function(){
-//         $(this).addClass('active');
-//       });
-//     });
-//   });
-//
-// });

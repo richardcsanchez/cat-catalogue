@@ -8,12 +8,14 @@
      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
+  <header class="header">
+    <ul class="layout">
     <%if logged_in?%>
-    <%=link_to 'Home', user_path(current_user)%>
-    <%=link_to 'All Cats', cats_adoptable_url%>
-    <%=link_to 'All Adoption Agencies', agencies_path%>
+    <li class="header-link"><%=link_to 'Home', user_path(current_user)%></li>
+    <li class="header-link"><%=link_to 'All Cats', cats_adoptable_url%></li>
+    <li class="header-link"><%=link_to 'All Adoption Agencies', agencies_path%></li>
     <%end%>
+    </ul>
   </header>
 
   <body>

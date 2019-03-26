@@ -11,11 +11,53 @@
     <%=@agency.zip_code%>
   </p>
   </div>
+  <%if current_user.admin?%>
+  <%= link_to 'Edit Agency', edit_agency_path(@agency)%>
+  <%end%>
+<br>
+<br>
 <%= link_to "Cats at this Agency", agency_cats_path(@agency.id)%>
 
 <%if current_user.admin?%>
-<%= link_to "Add Cat", new_agency_cat_path(@agency.id)%>
-<%= link_to 'Edit', edit_agency_path(@agency)%>
+<%= link_to "New Cat", new_agency_cat_path(@agency.id)%>
 <%end%>
 <br>
 <br>
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
+  <button class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
+</div>
+
+<div id="Cats" class="tabcontent">
+  <h3>Cats Index </h3>
+</div>
+
+<div id="New Cat" class="tabcontent">
+  <h3>New Cat Form</h3>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+function openTab(evt, tab) {
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  document.getElementById(tab).style.display = "block";
+  evt.currentTarget.className += " active";
+
+}
+
+</script>

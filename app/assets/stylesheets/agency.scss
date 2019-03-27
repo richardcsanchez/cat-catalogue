@@ -30,5 +30,22 @@
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+}
 
+
+.agency-name-header {
+  font-family: Helvetica, sans-serif;
+}
+
+#agencies-index-list:hover {
+  background-color: #ccc;
+}
+
+#agencies-index-list {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  padding: 0px 5px;
+  cursor: pointer;
+  width: 35%;
+  display: block;
 }

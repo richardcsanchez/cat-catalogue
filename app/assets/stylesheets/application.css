@@ -13,9 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
-
-
 header ul {
   list-style-type: none;
   margin: 0;
@@ -26,6 +23,15 @@ header ul {
 
  header li  {
   float: left;
+}
+
+.small-button {
+  background-color: #ddd;
+  float: left;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
  header li a {
@@ -42,4 +48,8 @@ header  li a:hover {
 
 header li a.active {
   background-color: #111;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
 }

@@ -1,11 +1,17 @@
-<h1>All Cat Adoption Agencies</h1>
+<h1 class="agency-name-header">Cat Adoption Agencies</h1>
 
-<%@agencies.each do |a|%>
-<ul>
-  <%= link_to a.name, agency_path(a)%> - <%=a.state%>
-</ul>
-<%end%>
+<div id="agency-index">
+    <%@agencies.each do |a|%>
+    <button id="agencies-index-list">
+      <p id="agency-name"><%= link_to a.name, agency_path(a)%></p>
+      <p id="agency-state"><%=a.state%></p>
+    </button>
+
+      <%end%>
+</div>
+<br>
+<br>
 
 <%if current_user.admin?%>
-  <%=link_to "New Agency", new_agency_path%>
+  <button class = "small-button"><%=link_to "New Agency", new_agency_path%></button>
   <%end%>

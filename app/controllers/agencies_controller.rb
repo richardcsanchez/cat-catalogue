@@ -24,6 +24,10 @@ class AgenciesController < ApplicationController
 
   def index
     @agencies = Agency.all
+    respond_to do |f|
+      f.html
+      f.json {render json: @posts}
+    end
   end
 
   def update

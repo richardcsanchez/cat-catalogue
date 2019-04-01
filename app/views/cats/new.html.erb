@@ -1,6 +1,58 @@
 <h1>Add a new cat!</h1>
 
-<%= render 'form'%>
+<%= form_for @cat do |f|%>
+
+<%=f.label 'name'':'%> <br>
+<%=f.text_field :name %> <br>
 <br>
+<%=f.label 'breed'':'%> <br>
+<%=f.text_field :breed %> <br>
+<br>
+<%=f.label 'age'':'%> <br>
+<%=f.text_field :age %> <br>
+<br>
+<%=f.label 'sex'':'%> <br>
+<%=f.select :sex, options_for_select(['Unknown', 'Male', 'Female'], selected: @cat.sex || nil), include_blank: true%><br>
+<br>
+<%= f.label 'disposition'':' %><br>
+<%= f.text_field :disposition%><br>
+<br>
+<%= f.label :cost, "Cost to Adopt:" %><br>
+$<%= f.text_field :cost%><br>
+<br>
+<%= f.label :neutered, "Spayed/Neutered?" %><br>
+<%= f.check_box :neutered%> Yes <br>
+<br>
+<%=f.label 'image', "Image Link:"%> <br>
+<%=f.text_field :image %> <br>
+<br>
+<%= f.label :agency_id, "Adoption Agency:"%> <br>
+<%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || params[:agency_id])%><br>
+<br>
+<%= f.submit "Submit" %>
+<%end%>
+
+<br>
+<div id="postResult">
+  <h2 id="catName"></h2>
+  </div>
 <br>
 <%= link_to 'Back', cats_path%>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      var values = $(this).serialize();
+      var posting = $.post('/cats', values);
+      posting.done(function(data){
+        var cat = data;
+
+        $("#catName").text(cat["name"]);
+      });
+    });
+  });
+</script>

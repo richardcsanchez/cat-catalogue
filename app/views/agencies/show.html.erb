@@ -26,18 +26,29 @@
 
 
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Cats'), loadIndex()">Cats at this Agency</button>
-  <button class="tablinks" onclick="openTab(event, 'New Cat'), loadNewCatForm()">New Cat</button>
+  <button class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
+  <button class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
 </div>
 
 <div id="Cats" class="tabcontent">
-  <h3>Cats Index </h3>
-  <p id="cats index"></p>
+    <% @agency.cats.adoptable.each do |c| %>
+    <button id="cats-index-button" class="cats-index-list">
+      <img id="cat-image" src=<%=c.image%>>
+        <p id="cat-name"><%=link_to c.name, agency_cat_path(c.agency, c)%></p>
+        <p id="cat-name"><%=c.breed%></p>
+      </button>
+    <%end%>
 </div>
 
 <div id="New Cat" class="tabcontent">
-  <h3>New Cat Form</h3>
-  <p id="new cat form"> </p>
+
+  <div id="new cat form">
+    <%=render "cats/form"%>
+  </div>
+
+  <div id="postResult">
+    <h2 id="catName"></h2>
+    </div>
 </div>
 
 
@@ -62,13 +73,7 @@ function openTab(evt, tab) {
 
 }
 
-function loadIndex() {
-  document.getElementById("cats index").innerHTML = ("List of Cats")
-}
 
-function loadNewCatForm(){
-  document.getElementById("new cat form").innerHTML = catform
-}
 
 
 </script>

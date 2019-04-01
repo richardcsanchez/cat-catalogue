@@ -16,6 +16,7 @@ class AgenciesController < ApplicationController
 
   def show
     @agency = Agency.find(params[:id])
+    @cat = Cat.new
     respond_to do |format|
     format.html { render :show }
     format.json { render json: @agency }
@@ -30,7 +31,7 @@ end
     @agencies = Agency.all
     respond_to do |f|
       f.html
-      f.json {render json: @posts}
+      f.json {render json: @agencies}
     end
   end
 

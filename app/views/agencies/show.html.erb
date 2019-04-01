@@ -26,16 +26,18 @@
 
 
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
-  <button class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
+  <button class="tablinks" onclick="openTab(event, 'Cats'), loadIndex()">Cats at this Agency</button>
+  <button class="tablinks" onclick="openTab(event, 'New Cat'), loadNewCatForm()">New Cat</button>
 </div>
 
 <div id="Cats" class="tabcontent">
   <h3>Cats Index </h3>
+  <p id="cats index"></p>
 </div>
 
 <div id="New Cat" class="tabcontent">
   <h3>New Cat Form</h3>
+  <p id="new cat form"> </p>
 </div>
 
 
@@ -59,5 +61,14 @@ function openTab(evt, tab) {
   evt.currentTarget.className += " active";
 
 }
+
+function loadIndex() {
+  document.getElementById("cats index").innerHTML = ("List of Cats")
+}
+
+function loadNewCatForm(){
+  document.getElementById("new cat form").innerHTML = "New Cat Form"
+}
+
 
 </script>

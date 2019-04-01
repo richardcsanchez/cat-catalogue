@@ -16,7 +16,11 @@ class AgenciesController < ApplicationController
 
   def show
     @agency = Agency.find(params[:id])
+    respond_to do |format|
+    format.html { render :show }
+    format.json { render json: @agency }
   end
+end
 
   def edit
       @agency = Agency.find(params[:id])

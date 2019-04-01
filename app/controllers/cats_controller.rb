@@ -30,7 +30,8 @@ class CatsController < ApplicationController
     @cat = Cat.new(cat_params)
     @cat.user_id = current_user.id
      if @cat.save
-       redirect_to agency_cat_path(@cat.agency_id, @cat)
+       render json: @cat, status: 201
+       # redirect_to agency_cat_path(@cat.agency_id, @cat)
      else
        render :new
      end
@@ -38,6 +39,10 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find_by_id(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @cat }
+    end
   end
 
   def edit

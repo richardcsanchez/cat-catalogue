@@ -44,3 +44,20 @@ $<%= f.text_field :cost%><br>
 <%end%>
 
 <br>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      var values = $(this).serialize();
+      var posting = $.post('/cats', values);
+      posting.done(function(data){
+        var cat = data;
+
+        $("#catName").text(cat["name"]);
+      });
+    });
+  });
+</script>

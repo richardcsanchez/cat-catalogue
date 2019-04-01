@@ -49,3 +49,29 @@
   width: 35%;
   display: block;
 }
+
+.cats-index-list:hover {
+  background-color: #ccc;
+}
+
+.cats-index-list {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  width: 50%;
+  display: block;
+}
+
+#cats-index-list .cat-name {
+  font-weight: bold;
+}
+
+
+img {
+  float: left;
+  padding: 5px; /* Some padding */
+  max-width: 150px; /* Set a small width */
+  max-height: 106px;
+  width: auto;
+  height: auto;
+}

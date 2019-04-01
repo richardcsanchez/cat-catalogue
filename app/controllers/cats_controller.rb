@@ -29,10 +29,7 @@ class CatsController < ApplicationController
   def create
     @cat = Cat.new(cat_params)
     @cat.user_id = current_user.id
-     if @cat.save
-       render json: @cat, status: 201
-       # redirect_to agency_cat_path(@cat.agency_id, @cat)
-     else
+     if !@cat.save
        render :new
      end
   end

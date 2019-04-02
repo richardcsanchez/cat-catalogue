@@ -9,16 +9,18 @@
 <div class="agency_address">
     <p class="street_1"><%=@agency.street_1%></p>
     <p class="street_2"><%=@agency.street_2%></p>
-    <p class="city" class="state" class="zip_code"><%=@agency.city%>, <%=@agency.state%>, <%=@agency.zip_code%></p>
+    <p class="city"><%=@agency.city%></p>
+    <p class="state"> <%=@agency.state%></p>
+    <p class="zip_code"><%=@agency.zip_code%></p>
 
   </div>
   <% if current_user.admin? %>
-  <button class = "small-button" id='edit-agency'onClick = 'editAgency()'>Edit Agency</button>
+  <button class = "small-button" id='edit-agency' onClick = 'editAgency()'>Edit Agency</button>
   <%end%>
 <br>
 <br>
-<%= link_to "Cats at this Agency", agency_cats_path(@agency.id)%>
-
+<button class ="id" onClick="agencyCats()"> Cats at ths Agency </button>
+<br>
 <%if current_user.admin?%>
 <%= link_to "New Cat", new_agency_cat_path(@agency.id)%>
 <%end%>

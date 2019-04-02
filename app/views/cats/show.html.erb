@@ -8,17 +8,19 @@
 <h4>Sex:</h4><p class="sex"><%=@cat.sex%></p>
 <h4>Age:</h4><p class="age"><%=@cat.age%> Years Old</p>
 <h4> Cat-itude:</h4><p class="disposition"><%=@cat.disposition%></p>
-<h4> Spayed/Neutered?</h4> <p class="neutered"><%status = @cat.neutered%></p>
+<h4> Spayed/Neutered? </h4> <p class="neutered"><%=@cat.neutered%></p>
 <h4> Cost to Adopt ($):</h4> <p class="cost">$<%=@cat.cost%></p>
 <h4>Owner:</h4>
-<div class="owner_id">
   <% if @cat.owner_id != nil %>
-     <p> <%= @cat.owner_name%></p>
-  <%elsif @cat.owner_id == nil%>
+     <p class="owner_id"> <%= @cat.owner_name%></p>
+  <% elsif @cat.owner_id == nil %>
     <p>This cat hasn't been adopted yet!</p>
   <%end%>
-  </div>
-<img class="image" src="<%=@cat.image%>" title="<%=@cat.name%>" />
+
+<div class="image">
+  <img src="<%=@cat.image%>" title="<%=@cat.name%>">
+</div>
+
 </div>
 <br>
 <br>

@@ -5,14 +5,14 @@
 <div class="agency_address">
   <p>
     <%=@agency.street_1%><br>
-    <%=@agency.street_2%>
+    <%=@agency.street_2%><br>
     <%=@agency.city%>
     <%=@agency.state%>
     <%=@agency.zip_code%>
   </p>
   </div>
-  <%if current_user.admin?%>
-  <button class = "small-button"><%= link_to 'Edit Agency', edit_agency_path(@agency)%></button>
+  <% if current_user.admin? %>
+  <button class = "small-button" id='edit-agency'onClick = 'editAgency()'>Edit Agency</button>
   <%end%>
 <br>
 <br>
@@ -32,10 +32,12 @@
 
 <div id="Cats" class="tabcontent">
     <% @agency.cats.adoptable.each do |c| %>
-    <button id="cats-index-button" class="cats-index-list">
+    <button id="cats-index-button" class="cats-index-list" >
       <img id="cat-image" src=<%=c.image%>>
         <p id="cat-name"><%=link_to c.name, agency_cat_path(c.agency, c)%></p>
         <p id="cat-name"><%=c.breed%></p>
+
+        <p id="more-cat-info" status="hidden"><%=c.disposition%></p>
       </button>
     <%end%>
 </div>
@@ -72,6 +74,28 @@ function openTab(evt, tab) {
   evt.currentTarget.className += " active";
 
 }
+
+function moreCatInfo() {
+  document.getElementById("more-cat-info").hidden = false
+};
+
+function editAgency(){
+
+  $.ajax({
+    type: 'GET',
+    url: '/agencies',
+    success: function(data){
+      console.log("clicked")
+    }
+  })
+}
+    // var id
+  // $.ajax({
+  // type GET,
+  // url '/agencies/' + data[id] +  '/edit'
+  // });
+
+
 
 
 

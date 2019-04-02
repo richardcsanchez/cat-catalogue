@@ -48,28 +48,33 @@ $(function () {
       $(".email").text(data["email"]);
       $(".phone_number").text(data["phone_number"]);
       $(".street_1").text(data["street_1"]);
-      $(".street_2").text(data["street_1"]);
+      $(".street_2").text(data["street_2"]);
       $(".city").text(data["city"]);
       $(".state").text(data["state"]);
       $(".zip_code").text(data["zip_code"]);
+      $("#cat-name").text(data["cats"]["name"]);
+      $("#cat-breed").text(data["cats"]["breed"]);
 
       $(".js-next").attr("data-id", data["id"]);
     });
   });
-});
+})
 
 $(function () {
   $(".js-previous").on("click", function() {
-    var previousId = parseInt($(".js-previous").attr("data-id")) + 1;
+    var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
     $.getJSON("/agencies/" + previousId + ".json", function(data) {
       $(".name").text(data["name"]);
       $(".email").text(data["email"]);
       $(".phone_number").text(data["phone_number"]);
       $(".street_1").text(data["street_1"]);
-      $(".street_2").text(data["street_1"]);
+      $(".street_2").text(data["street_2"]);
       $(".city").text(data["city"]);
       $(".state").text(data["state"]);
       $(".zip_code").text(data["zip_code"]);
+      $("#cat-name").text(data["cats"]["name"]);
+      $("#cat-breed").text(data["cats"]["breed"]);
+
 
       $(".js-previous").attr("data-id", data["id"]);
     });

@@ -1,10 +1,10 @@
-<button class = "small-button" class="js-previous" data-id="<%= @agency.id %>">Previous Agency</button>
-<button class = "small-button" class="js-next" data-id="<%= @agency.id %>">Next Agency</button>
+<button  class="js-previous" data-id="<%= @agency.id %>">Previous Agency</button>
+<button class="js-next" data-id="<%= @agency.id %>">Next Agency</button>
 
 
-<h1 class="agency-name-header" id="agency_name"><%= @agency.name %></h1>
-<h4 class="agency_info" class="email"><%= @agency.email%></h4>
-<h4 class="agency_info" class="phone_number"><%= number_to_phone(@agency.phone_number)%></h4>
+<h1 class="name" class="agency-name-header" id="agency_name" ><%= @agency.name %></h1>
+<h4 class="email" class="agency_info" ><%= @agency.email%></h4>
+<h4 class="phone_number" class="agency_info" ><%= number_to_phone(@agency.phone_number)%></h4>
 
 <div class="agency_address">
     <p class="street_1"><%=@agency.street_1%></p>
@@ -36,9 +36,8 @@
     <button id="cats-index-button" class="cats-index-list" >
       <img id="cat-image" src=<%=c.image%>>
         <p id="cat-name"><%=link_to c.name, agency_cat_path(c.agency, c)%></p>
-        <p id="cat-name"><%=c.breed%></p>
+        <p id="cat-breed"><%=c.breed%></p>
 
-        <p id="more-cat-info" status="hidden"><%=c.disposition%></p>
       </button>
     <%end%>
 </div>

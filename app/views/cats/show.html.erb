@@ -4,12 +4,12 @@
 <div class="cat-info">
 <h1 class="name"><%=@cat.name%></h1>
 <h4 class="agency"><%=@cat.agency.name%></h4>
-<h4>Breed:</h4> <p class="breed"><%=@cat.breed%></p>
-<h4>Sex:</h4><p class="sex"><%=@cat.sex%></p>
-<h4>Age:</h4><p class="age"><%=@cat.age%> Years Old</p>
-<h4> Cat-itude:</h4><p class="disposition"><%=@cat.disposition%></p>
-<h4> Spayed/Neutered? </h4> <p class="neutered"><%=@cat.neutered%></p>
-<h4> Cost to Adopt ($):</h4> <p class="cost">$<%=@cat.cost%></p>
+<p class="breed">Breed: <%=@cat.breed%></p>
+<p class="sex">Sex: <%=@cat.sex%></p>
+<p class="age"><%=@cat.age%>  Years Old</p>
+<p class="disposition"><span style="font-weight:bold">Disposition: </span> <%=@cat.disposition%></p>
+<p class="neutered"> <span style="font-weight:bold">Spayed/Neutered? </span><%=@cat.neutered%></p>
+<p class="cost"><span style="font-weight:bold">Cost to Adopt: </span> $<%=@cat.cost%></p>
 <h4>Owner:</h4>
   <% if @cat.owner_id != nil %>
      <p class="owner_id"> <%= @cat.owner_name%></p>
@@ -17,9 +17,9 @@
     <p>This cat hasn't been adopted yet!</p>
   <%end%>
 
-<div class="image">
-  <img src="<%=@cat.image%>" title="<%=@cat.name%>">
-</div>
+
+  <img class="image" src="<%=@cat.image%>" title="<%=@cat.name%>">
+
 
 </div>
 <br>
@@ -55,14 +55,14 @@ $(function () {
     $.getJSON("/agencies/" + agencyId + "/cats/" + nextId + ".json", function(data) {
       $(".name").text(data["name"]);
       $(".agency").text(data["agency"]["name"])
-      $(".breed").text(data["breed"]);
-      $(".sex").text(data["sex"]);
-      $(".age").text(data["age"]);
-      $(".disposition").text(data["disposition"]);
-      $(".neutered").text(data["neutered"]);
-      $(".cost").text(data["cost"]);
+      $(".breed").text("Breed: " + data["breed"]);
+      $(".sex").text("Sex: " + data["sex"]);
+      $(".age").text(data["age"] + " years old");
+      $(".disposition").text("Cat-itude: " + data["disposition"]);
+      $(".neutered").text("Spayed/Neutered? " + data["neutered"]);
+      $(".cost").text("Cost to Adopt: $" + data["cost"]);
       $(".owner_id").text(data["owner_id"]);
-      $(".image").text(data["image"]);
+      $(".image").attr('src', data["image"]);
 
       $(".js-next").attr("data-id", data["id"]);
     });
@@ -76,14 +76,14 @@ $(function () {
     $.getJSON("/agencies/" + agencyId + "/cats/" + previousId + ".json", function(data) {
       $(".name").text(data["name"]);
       $(".agency").text(data["agency"]["name"])
-      $(".breed").text(data["breed"]);
-      $(".sex").text(data["sex"]);
-      $(".age").text(data["age"]);
-      $(".disposition").text(data["disposition"]);
-      $(".neutered").text(data["neutered"]);
-      $(".cost").text(data["cost"]);
+      $(".breed").text("Breed:" + data["breed"]);
+      $(".sex").text("Sex:" + data["sex"]);
+      $(".age").text(data["age"] + " years old");
+      $(".disposition").text("Cat-itude: " + data["disposition"]);
+      $(".neutered").text("Spayed/Neutered? " + data["neutered"]);
+      $(".cost").text("Cost to Adopt: $" + data["cost"]);
       $(".owner_id").text(data["owner_id"]);
-      $(".image").text(data["image"]);
+      $(".image").attr('src', data["image"]);
 
 
       $(".js-previous").attr("data-id", data["id"]);

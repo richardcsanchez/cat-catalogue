@@ -3,16 +3,19 @@
 <% end %>
 <div class="cat-info">
 <h1 class="name"><%=@cat.name%></h1>
-<h4 class="agency"><%=link_to @cat.agency.name, agency_path(@cat.agency)%></h4>
+<h4 class="agency"><%=@cat.agency.name%></h4>
 <h4>Breed:</h4> <p class="breed"><%=@cat.breed%></p>
-<h4 class="sex"><%=@cat.sex%></h4>
-<h4 class="age"><%=@cat.age%> Years Old</h4>
+<h4>Sex:</h4><p class="sex"><%=@cat.sex%></p>
+<h4>Age:</h4><p class="age"><%=@cat.age%> Years Old</p>
 <h4> Cat-itude:</h4><p class="disposition"><%=@cat.disposition%></p>
-<h4> Spayed/Neutered?</h4> <p class="neutered"><%=@cat.neutered?%></p>
-<h4> Cost to Adopt:</h4> <p class="cost">$<%=@cat.cost%></p>
+<h4> Spayed/Neutered?</h4> <p class="neutered"><%status = @cat.neutered%></p>
+<h4> Cost to Adopt ($):</h4> <p class="cost">$<%=@cat.cost%></p>
+<h4>Owner:</h4>
 <div class="owner_id">
   <% if @cat.owner_id != nil %>
-  <h4>Owner:</h4> <p > <%= @cat.owner_name%></p>
+     <p> <%= @cat.owner_name%></p>
+  <%elsif @cat.owner_id == nil%>
+    <p>This cat hasn't been adopted yet!</p>
   <%end%>
   </div>
 <img class="image" src="<%=@cat.image%>" title="<%=@cat.name%>" />
@@ -29,6 +32,7 @@
 <br>
 <br>
 <button class="js-next" data-id="<%= @cat.id %>" agency-id="<%= @cat.agency_id%>">Next Cat</button>
+<button class="js-previous" data-id="<%= @cat.id %>" agency-id="<%= @cat.agency_id%>">Previous Cat</button>
 
 
 <% if current_user.admin? || @cat.owner_id == current_user.id %>
@@ -48,7 +52,7 @@ $(function () {
     var agencyId = parseInt($(".js-next").attr("agency-id"))
     $.getJSON("/agencies/" + agencyId + "/cats/" + nextId + ".json", function(data) {
       $(".name").text(data["name"]);
-      $(".agency").text(data["agency_id"]["name"])
+      $(".agency").text(data["agency"]["name"])
       $(".breed").text(data["breed"]);
       $(".sex").text(data["sex"]);
       $(".age").text(data["age"]);
@@ -62,4 +66,27 @@ $(function () {
     });
   });
 });
+
+$(function () {
+  $(".js-previous").on("click", function() {
+    var previousId = parseInt($(".js-next").attr("data-id")) - 1;
+    var agencyId = parseInt($(".js-previous").attr("agency-id"))
+    $.getJSON("/agencies/" + agencyId + "/cats/" + previousId + ".json", function(data) {
+      $(".name").text(data["name"]);
+      $(".agency").text(data["agency"]["name"])
+      $(".breed").text(data["breed"]);
+      $(".sex").text(data["sex"]);
+      $(".age").text(data["age"]);
+      $(".disposition").text(data["disposition"]);
+      $(".neutered").text(data["neutered"]);
+      $(".cost").text(data["cost"]);
+      $(".owner_id").text(data["owner_id"]);
+      $(".image").text(data["image"]);
+
+
+      $(".js-previous").attr("data-id", data["id"]);
+    });
+  });
+});
+
 </script>

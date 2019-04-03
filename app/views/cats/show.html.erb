@@ -3,9 +3,9 @@
 <% end %>
 <div class="cat-info">
 <h1 class="name"><%=@cat.name%></h1>
-<h4 class="agency"><%=@cat.agency.name%></h4>
-<p class="breed">Breed: <%=@cat.breed%></p>
-<p class="sex">Sex: <%=@cat.sex%></p>
+<h4 class="agency"><%=link_to @cat.agency.name, agency_path(@cat.agency)%></h4>
+<p class="breed"><span style="font-weight:bold">Breed:</span> <%=@cat.breed%></p>
+<p class="sex"><span style="font-weight:bold">Sex:</span> <%=@cat.sex%></p>
 <p class="age"><%=@cat.age%>  Years Old</p>
 <p class="disposition"><span style="font-weight:bold">Disposition: </span> <%=@cat.disposition%></p>
 <p class="neutered"> <span style="font-weight:bold">Spayed/Neutered? </span><%=@cat.neutered%></p>
@@ -33,8 +33,6 @@
 <%end%>
 <br>
 <br>
-<button class="js-next" data-id="<%= @cat.id %>" agency-id="<%= @cat.agency_id%>">Next Cat</button>
-<button class="js-previous" data-id="<%= @cat.id %>" agency-id="<%= @cat.agency_id%>">Previous Cat</button>
 
 
 <% if current_user.admin? || @cat.owner_id == current_user.id %>
@@ -44,51 +42,3 @@
                          method: :delete,
                          data: { confirm: 'Are you sure?' } %>
 <%end%>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    var agencyId = parseInt($(".js-next").attr("agency-id"))
-    $.getJSON("/agencies/" + agencyId + "/cats/" + nextId + ".json", function(data) {
-      $(".name").text(data["name"]);
-      $(".agency").text(data["agency"]["name"])
-      $(".breed").text("Breed: " + data["breed"]);
-      $(".sex").text("Sex: " + data["sex"]);
-      $(".age").text(data["age"] + " years old");
-      $(".disposition").text("Cat-itude: " + data["disposition"]);
-      $(".neutered").text("Spayed/Neutered? " + data["neutered"]);
-      $(".cost").text("Cost to Adopt: $" + data["cost"]);
-      $(".owner_id").text(data["owner_id"]);
-      $(".image").attr('src', data["image"]);
-
-      $(".js-next").attr("data-id", data["id"]);
-    });
-  });
-});
-
-$(function () {
-  $(".js-previous").on("click", function() {
-    var previousId = parseInt($(".js-next").attr("data-id")) - 1;
-    var agencyId = parseInt($(".js-previous").attr("agency-id"))
-    $.getJSON("/agencies/" + agencyId + "/cats/" + previousId + ".json", function(data) {
-      $(".name").text(data["name"]);
-      $(".agency").text(data["agency"]["name"])
-      $(".breed").text("Breed:" + data["breed"]);
-      $(".sex").text("Sex:" + data["sex"]);
-      $(".age").text(data["age"] + " years old");
-      $(".disposition").text("Cat-itude: " + data["disposition"]);
-      $(".neutered").text("Spayed/Neutered? " + data["neutered"]);
-      $(".cost").text("Cost to Adopt: $" + data["cost"]);
-      $(".owner_id").text(data["owner_id"]);
-      $(".image").attr('src', data["image"]);
-
-
-      $(".js-previous").attr("data-id", data["id"]);
-    });
-  });
-});
-
-</script>

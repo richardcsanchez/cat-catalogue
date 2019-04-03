@@ -68,6 +68,7 @@ $(function () {
   $(".js-previous").on("click", function() {
     var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
     $.getJSON("/agencies/" + previousId + ".json", function(data) {
+
       $(".id").text(data["id"])
       $(".name").text(data["name"]);
       $(".email").text(data["email"]);
@@ -77,8 +78,16 @@ $(function () {
       $(".city").text(data["city"]);
       $(".state").text(data["state"]);
       $(".zip_code").text(data["zip_code"]);
-      $(".cats").text(data["cats"]);
-      
+      var agencyCats = (data["cats"])
+      agencyCats.forEach(function(cat){
+        $("cat-name").text(cat["name"]);
+        console.log(cat["name"])
+        $("cat-breed").text(cat["name"]);
+        $("cat-img").attr('src', cat["image"]);
+        }
+      )
+
+
       $(".js-next").attr("data-id", data["id"]);
       $(".js-previous").attr("data-id", data["id"]);
       $(".cats-index").attr("data-id", data["id"]);

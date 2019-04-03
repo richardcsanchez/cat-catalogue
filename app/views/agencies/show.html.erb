@@ -33,15 +33,13 @@
   <button class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
 </div>
 
-<div class="cats" id="Cats" class="cats-index" data-id="<%= @agency.id %>" class="tabcontent">
-    <div class="cats-index" ><% @agency.cats.adoptable.each do |c| %></div>
-    <button id="cats-index-button" class="cats-index-list" >
-      <img id="cat-image" src=<%=c.image%>>
-        <p id="cat-name"><%=link_to c.name, agency_cat_path(c.agency, c)%></p>
-        <p id="cat-breed"><%=c.breed%></p>
+<div  class="cats-index" data-id="<%= @agency.id %>" id="Cats"  class="cats"  class="tabcontent">
+  <ul>
+      <img class="cat-img"><img>
+      <p class="cat-name"></p>
+      <p class="cat-breed"></p>
+    </ul>
 
-      </button>
-    <%end%>
 </div>
 
 <div id="New Cat" class="tabcontent">

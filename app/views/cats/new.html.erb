@@ -34,7 +34,7 @@ $<%= f.text_field :cost%><br>
 
 <br>
 <div id="postResult">
-  <h2 id="catName"></h2>
+  <h2 id="cat-name"></h2>
   </div>
 <br>
 <%= link_to 'Back', cats_path%>
@@ -43,16 +43,52 @@ $<%= f.text_field :cost%><br>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event) {
-      event.preventDefault();
-      var values = $(this).serialize();
-      var posting = $.post('/cats', values);
-      posting.done(function(data){
-        var cat = data;
 
-        $("#catName").text(cat["name"]);
-      });
-    });
-  });
+  $(function() {
+   setupCreateCat();
+ });
+
+ function createCat(url, data) {
+   $.post(url, data, "json")
+     .done(json => {
+       let newCat = new Cat(json);
+          console.log(newCat)
+       newCat.updateHTML();
+     })
+     .error(resp => {
+       alert("There is an error!", resp);
+     });
+ }
+
+class Cat {
+  constructor(name, breed, age, sex, disposition, cost, adopted, user_id, neutered, image, agency_id, owner_id) {
+     this.name = name
+     this.breed = breed
+     this.age = age
+     this.sex = sex
+     this.disposition = disposition
+     this.cost = cost
+     this.adopted = adopted
+     this.user_id = user_id
+     this.neutered = neutered
+     this.image = image
+     this.agency_id = agency_id
+     this.owner_id = owner_id
+   }
+
+   updateHTML() {
+     document.getElementById(".cat-name").text(this.data["name"]);
+   }
+}
+
+ function setupCreateCat() {
+   $("form").submit(function(event) {
+     event.preventDefault();
+     let values = $(this).serialize();
+     let url = $(this).attr("action");
+
+     createCat(url, values);
+   });
+ }
+
 </script>

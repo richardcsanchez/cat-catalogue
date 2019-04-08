@@ -77,12 +77,12 @@ $(function () {
       $(".city").text(data["city"]);
       $(".state").text(data["state"]);
       $(".zip_code").text(data["zip_code"]);
-
+      $("#set-agency").text(data["id"]);
 
       $(".js-next").attr("data-id", data["id"]);
       $(".js-previous").attr("data-id", data["id"]);
-      $(".cats-index").attr("data-id", data["id"]);
     });
+
   });
 });
 
@@ -96,6 +96,22 @@ $(function (){
       })
 })
 })
+
+function loadCats() {
+  var template = document.getElementById("cat-template").innerHTML
+  var previousId = parseInt($(".js-previous").attr("data-id"));
+  $.getJSON("/agencies/" + previousId + "/cats.json", function(data) {
+    var cats = data
+
+    var templateScript = Handlebars.compile(template);
+    var result = templateScript(cats);
+    document.getElementsByTagName("main")[0].innerHTML += result;
+  })
+  // var template = Handlebars.compile(document.getElementById("issue-template").innerHTML);
+  // var result = template(issues);
+  // document.getElementsByTagName("main")[0].innerHTML += result;
+}
+
 
 $(function() {
   var agencyId = parseInt($(".js-next").attr("data-id"));

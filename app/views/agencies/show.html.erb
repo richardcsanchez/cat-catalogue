@@ -26,11 +26,12 @@
 <%end%>
 <br>
 <br>
-<%@agency.cats.adoptable do |cat|%>
-  <img id="cat-image" src=<%=cat.image%>>
-  <p id="cat-name"><%=cat.name%></p>
-  <p id="cat-breed"><%=cat.breed%></p>
+
+<div id="set-agency"><%@agency.cats.each do |cat|%>
+  <ul><%=cat.name%></ul>
   <%end%>
+  </div>
+
 
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
@@ -38,17 +39,16 @@
 </div>
 
 <div class="tabcontent" class="cats" id="Cats" class="cats-index"  data-id=<%=@agency.id%>>
+    <div><%@agency.cats.adoptable.each do |cat|%>
     <button id="cats-index-button" class="cats-index-list" >
-      <p id="cat-id"></p>
-      <img id="cat-image" >
-        <p id="cat-name"></p>
-        <p id="cat-breed"></p>
+        <p id="cat-id"><%=cat.id%></p>
+        <p><%=cat.name%></p>
+        <p><%=cat.breed%></p>
+        </button>
+        <%end%>
+        </div>
 
-      </button>
 </div>
-
-
-
 
 
 <div id="New Cat" class="tabcontent">
@@ -62,5 +62,17 @@
     </div>
 </div>
 
-
 <script type="text/javascript" charset="utf-8"></script>
+
+
+<main id="main">
+  <a href="#" onclick="loadCats();">Load Cat</a>
+</main>
+<script id="cat-template" type="text/x-handlebars-template">
+  {{#each this}}
+  <article>
+    <header><h3>#{{name}} </h3></header>
+    <p>#{{breed}}</p>
+    <footer><img src="#{{image}}"></footer>
+  </article>
+</script>

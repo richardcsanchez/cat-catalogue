@@ -112,11 +112,7 @@ function loadCats() {
   // document.getElementsByTagName("main")[0].innerHTML += result;
 }
 
-
-$(function() {
-  var agencyId = parseInt($(".js-next").attr("data-id"));
-  var catId = parseInt(document.getElementById("cat-id").innerHTML)
-  $("#cats-index-button").on("click", function () {
-    window.location.href = "/agencies/" + agencyId + "/cats/" + catId
-  })
-})
+function catShowPage(catId){
+  var agencyId = parseInt($(".js-previous").attr("data-id"))
+  window.location.href = "/agencies/" + agencyId + "/cats/" + catId
+  }

@@ -41,6 +41,7 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find_by_id(params[:id])
+    @agency = Agency.find_by_id(params[:agency_id])
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @cat }

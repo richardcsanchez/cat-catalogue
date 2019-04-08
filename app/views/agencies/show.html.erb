@@ -27,27 +27,22 @@
 <br>
 <br>
 
-<div id="set-agency"><%@agency.cats.each do |cat|%>
-  <ul><%=cat.name%></ul>
-  <%end%>
-  </div>
-
 
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
   <button class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
 </div>
 
-<div class="tabcontent" class="cats" id="Cats" class="cats-index"  data-id=<%=@agency.id%>>
+<div class="tabcontent" class="cats" id="Cats" class="cats-index"  data-id="<%=@agency.id%>">
     <div><%@agency.cats.adoptable.each do |cat|%>
-    <button id="cats-index-button" class="cats-index-list" >
-        <p id="cat-id"><%=cat.id%></p>
+    <button class="cats-index-list" id="<%=cat.id%>" onClick="catShowPage(this.id)">
+        <p class="cat-id" data-id="<%=cat.id%>"><%=cat.id%></p>
+        <img id="cat-image" src=<%=cat.image%>>
         <p><%=cat.name%></p>
         <p><%=cat.breed%></p>
         </button>
         <%end%>
-        </div>
-
+      </div>
 </div>
 
 

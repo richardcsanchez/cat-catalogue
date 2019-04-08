@@ -2,8 +2,8 @@
 
 <div id="agency-index">
     <%@agencies.each do |a|%>
-    <button id="agencies-index-list">
-      <p id="agency-name"><%= link_to a.name, agency_path(a)%></p>
+    <button class="agencies-index-list" id="<%=a.id%>" onClick="agencyShowPage(this.id)">
+      <p id="agency-name"><%=a.name%></p>
       <p id="agency-state"><%=a.state%></p>
     </button>
 

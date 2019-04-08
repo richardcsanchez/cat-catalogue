@@ -1,5 +1,5 @@
-<button class="js-next" data-id="<%= @agency.id %>">Next Agency</button>
 <button class="js-previous" data-id="<%= @agency.id %>">Previous Agency</button>
+<button class="js-next" data-id="<%= @agency.id %>">Next Agency</button>
 
 
 <h1 class="name" class="agency-name-header" id="agency_name" ><%= @agency.name %></h1>
@@ -33,14 +33,21 @@
   <button class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
 </div>
 
-<div  class="cats-index" data-id="<%= @agency.id %>" id="Cats"  class="cats"  class="tabcontent">
-  <ul>
-      <img class="cat-img"><img>
-      <p class="cat-name"></p>
-      <p class="cat-breed"></p>
-    </ul>
+<div class="tabcontent" class="cats" id="Cats" class="cats-index"  data-id=<%=@agency.id%>>
+    <% @agency.cats.adoptable.each do |c| %>
+    <button id="cats-index-button" class="cats-index-list" >
+      <p id="cat-id"><%=c.id%></p>
+      <img id="cat-image" src=<%=c.image%>>
+        <p id="cat-name"><%=c.name%></p>
+        <p id="cat-breed"><%=c.breed%></p>
 
+      </button>
+    <%end%>
 </div>
+
+
+
+
 
 <div id="New Cat" class="tabcontent">
 

@@ -81,8 +81,7 @@ $(function () {
       var agencyCats = (data["cats"])
       agencyCats.forEach(function(cat){
         $("cat-name").text(cat["name"]);
-        console.log(cat["name"])
-        $("cat-breed").text(cat["name"]);
+        $("cat-breed").text(cat["breed"]);
         $("cat-img").attr('src', cat["image"]);
         }
       )
@@ -94,3 +93,11 @@ $(function () {
     });
   });
 });
+
+$(function() {
+  var agencyId = parseInt($(".js-next").attr("data-id"));
+  var catId = parseInt(document.getElementById("cat-id").innerHTML)
+  $("#cats-index-button").on("click", function () {
+    window.location.href = "/agencies/" + agencyId + "/cats/" + catId
+  })
+})

@@ -36,10 +36,6 @@ function openTab(evt, tab) {
 
 }
 
-function moreCatInfo() {
-  document.getElementById("more-cat-info").hidden = false
-};
-
 $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
@@ -117,6 +113,10 @@ function catShowPage(catId){
   window.location.href = "/agencies/" + agencyId + "/cats/" + catId
   }
 
-  function agencyShowPage(agencyId){
-    window.location.href= "/agencies/" + agencyId
-  }
+function agencyShowPage(agencyId){
+  window.location.href= "/agencies/" + agencyId
+}
+
+function editAgency(agencyId){
+  window.location.href= "/agencies/" + agencyId + "/edit"
+}

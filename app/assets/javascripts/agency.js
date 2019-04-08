@@ -73,7 +73,6 @@ $(function () {
       $(".city").text(data["city"]);
       $(".state").text(data["state"]);
       $(".zip_code").text(data["zip_code"]);
-      $("#set-agency").text(data["id"]);
 
       $(".js-next").attr("data-id", data["id"]);
       $(".js-previous").attr("data-id", data["id"]);

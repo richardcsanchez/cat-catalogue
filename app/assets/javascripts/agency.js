@@ -36,50 +36,7 @@ function openTab(evt, tab) {
 
 }
 
-$(function () {
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.getJSON("/agencies/" + nextId + ".json", function(data) {
-      $(".id").text(data["id"])
-      $(".name").text(data["name"]);
-      $(".email").text(data["email"]);
-      $(".phone_number").text(data["phone_number"]);
-      $(".street_1").text(data["street_1"]);
-      $(".street_2").text(data["street_2"]);
-      $(".city").text(data["city"]);
-      $(".state").text(data["state"]);
-      $(".zip_code").text(data["zip_code"]);
-      $(".cats").text(data["cats"]);
-      $("#cat-name").text(data["cats"]["name"]);
-      $("#cat-breed").text(data["cats"]["breed"]);
 
-      $(".js-next").attr("data-id", data["id"]);
-      $(".js-previous").attr("data-id", data["id"]);
-
-    });
-  });
-})
-
-$(function () {
-  $(".js-previous").on("click", function() {
-    var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
-    $.getJSON("/agencies/" + previousId + ".json", function(data) {
-      $(".id").text(data["id"])
-      $(".name").text(data["name"]);
-      $(".email").text(data["email"]);
-      $(".phone_number").text(data["phone_number"]);
-      $(".street_1").text(data["street_1"]);
-      $(".street_2").text(data["street_2"]);
-      $(".city").text(data["city"]);
-      $(".state").text(data["state"]);
-      $(".zip_code").text(data["zip_code"]);
-
-      $(".js-next").attr("data-id", data["id"]);
-      $(".js-previous").attr("data-id", data["id"]);
-    });
-
-  });
-});
 
 $(function (){
   $(".js-previous").on("click", function() {
@@ -91,8 +48,6 @@ $(function (){
       })
 })
 })
-
-
 
 function catShowPage(catId){
   var agencyId = parseInt($(".js-previous").attr("data-id"))
@@ -106,3 +61,48 @@ function agencyShowPage(agencyId){
 function editAgency(agencyId){
   window.location.href= "/agencies/" + agencyId + "/edit"
 }
+
+// $(function () {
+//   $(".js-next").on("click", function() {
+//     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+//     $.getJSON("/agencies/" + nextId + ".json", function(data) {
+//       $(".id").text(data["id"])
+//       $(".name").text(data["name"]);
+//       $(".email").text(data["email"]);
+//       $(".phone_number").text(data["phone_number"]);
+//       $(".street_1").text(data["street_1"]);
+//       $(".street_2").text(data["street_2"]);
+//       $(".city").text(data["city"]);
+//       $(".state").text(data["state"]);
+//       $(".zip_code").text(data["zip_code"]);
+//       $(".cats").text(data["cats"]);
+//       $("#cat-name").text(data["cats"]["name"]);
+//       $("#cat-breed").text(data["cats"]["breed"]);
+//
+//       $(".js-next").attr("data-id", data["id"]);
+//       $(".js-previous").attr("data-id", data["id"]);
+//
+//     });
+//   });
+// })
+//
+// $(function () {
+//   $(".js-previous").on("click", function() {
+//     var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
+//     $.getJSON("/agencies/" + previousId + ".json", function(data) {
+//       $(".id").text(data["id"])
+//       $(".name").text(data["name"]);
+//       $(".email").text(data["email"]);
+//       $(".phone_number").text(data["phone_number"]);
+//       $(".street_1").text(data["street_1"]);
+//       $(".street_2").text(data["street_2"]);
+//       $(".city").text(data["city"]);
+//       $(".state").text(data["state"]);
+//       $(".zip_code").text(data["zip_code"]);
+//
+//       $(".js-next").attr("data-id", data["id"]);
+//       $(".js-previous").attr("data-id", data["id"]);
+//     });
+//
+//   });
+// });

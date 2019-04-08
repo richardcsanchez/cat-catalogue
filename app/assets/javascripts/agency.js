@@ -68,7 +68,6 @@ $(function () {
   $(".js-previous").on("click", function() {
     var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
     $.getJSON("/agencies/" + previousId + ".json", function(data) {
-
       $(".id").text(data["id"])
       $(".name").text(data["name"]);
       $(".email").text(data["email"]);
@@ -78,13 +77,6 @@ $(function () {
       $(".city").text(data["city"]);
       $(".state").text(data["state"]);
       $(".zip_code").text(data["zip_code"]);
-      var agencyCats = (data["cats"])
-      agencyCats.forEach(function(cat){
-        $("cat-name").text(cat["name"]);
-        $("cat-breed").text(cat["breed"]);
-        $("cat-img").attr('src', cat["image"]);
-        }
-      )
 
 
       $(".js-next").attr("data-id", data["id"]);
@@ -93,6 +85,17 @@ $(function () {
     });
   });
 });
+
+$(function (){
+  $(".js-previous").on("click", function() {
+    var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
+  $.getJSON("/agencies/" + previousId + "/cats.json", function(data) {
+        $("cat-name").text(data["name"]);
+        $("cat-breed").text(data["name"]);
+        $("cat-img").attr('src', data["image"]);
+      })
+})
+})
 
 $(function() {
   var agencyId = parseInt($(".js-next").attr("data-id"));

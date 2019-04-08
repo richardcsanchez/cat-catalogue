@@ -26,7 +26,11 @@
 <%end%>
 <br>
 <br>
-
+<%@agency.cats.adoptable do |cat|%>
+  <img id="cat-image" src=<%=cat.image%>>
+  <p id="cat-name"><%=cat.name%></p>
+  <p id="cat-breed"><%=cat.breed%></p>
+  <%end%>
 
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
@@ -34,15 +38,13 @@
 </div>
 
 <div class="tabcontent" class="cats" id="Cats" class="cats-index"  data-id=<%=@agency.id%>>
-    <% @agency.cats.adoptable.each do |c| %>
     <button id="cats-index-button" class="cats-index-list" >
-      <p id="cat-id"><%=c.id%></p>
-      <img id="cat-image" src=<%=c.image%>>
-        <p id="cat-name"><%=c.name%></p>
-        <p id="cat-breed"><%=c.breed%></p>
+      <p id="cat-id"></p>
+      <img id="cat-image" >
+        <p id="cat-name"></p>
+        <p id="cat-breed"></p>
 
       </button>
-    <%end%>
 </div>
 
 

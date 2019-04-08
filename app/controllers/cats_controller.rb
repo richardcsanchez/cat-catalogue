@@ -5,7 +5,10 @@ class CatsController < ApplicationController
   def index
     if @agency = Agency.find_by_id(params[:agency_id])
       @cats = @agency.cats.adoptable
-
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @cats }
+      end
     elsif !params[:state].blank? && Agency.find_by_state(params[:state])
       @cats = Cat.find_by_state(params[:state])
 

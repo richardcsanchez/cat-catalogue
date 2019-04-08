@@ -20,22 +20,21 @@
 
  <%=link_to 'Sort By Cost', cats_filter_by_cost_path%>
 
-  <% @cats.each do |c| %>
   <ul>
     <div><%@cats.each do |cat|%>
-    <button class="cats-index-list" id="<%=cat.id%>" onClick="catShowPage(this.id)">
-        <p class="cat-id" data-id="<%=cat.id%>"><%=cat.id%></p>
-        <img id="cat-image" src=<%=cat.image%>>
-        <p><%=cat.name%></p>
-        <p><%=cat.breed%></p>
-        <p><%=cat.state%>
-          <p>$<%=cat.cost%>
-        </button>
-        <%end%>
+      <button class="cats-index-list" id="<%=cat.id%>" onClick="showCat(this.id)">
+          <p class="cat-agency" ><%=cat.agency_id%></p>
+          <img id="cat-image" src=<%=cat.image%>>
+          <p><%=cat.name%></p>
+          <p><%=cat.breed%></p>
+          <p><%=cat.state%>
+            <p>$<%=cat.cost%>
+          </button>
+          <%end%>
       </div>
 
       </ul>
-  <%end%>
 
   <%end%>
 <br><br><br>
+<script type="text/javascript" charset="utf-8"></script>

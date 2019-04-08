@@ -1,7 +1,7 @@
 <!-- <button class="js-previous" data-id="<%= @agency.id %>">Previous Agency</button>-->
 <!-- <button class="js-next" data-id="<%= @agency.id %>">Next Agency</button> -->
 
-
+<div class="agency-show" data-id=<%=@agency.id%>>
 <h1 class="name" class="agency-name-header" id="agency_name" ><%= @agency.name %></h1>
 <h4 class="email" class="agency_info" ><%= @agency.email%></h4>
 <h4 class="phone_number" class="agency_info" ><%= number_to_phone(@agency.phone_number)%></h4>
@@ -56,5 +56,5 @@
     <h2 id="catName"></h2>
     </div>
 </div>
-
+</div>
 <script type="text/javascript" charset="utf-8"></script>

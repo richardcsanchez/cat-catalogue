@@ -50,7 +50,7 @@ $(function (){
 })
 
 function catShowPage(catId){
-  var agencyId = parseInt($(".js-previous").attr("data-id"))
+  var agencyId = parseInt($(".agency-show").attr("data-id"))
   window.location.href = "/agencies/" + agencyId + "/cats/" + catId
   }
 

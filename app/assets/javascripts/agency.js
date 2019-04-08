@@ -92,20 +92,7 @@ $(function (){
 })
 })
 
-function loadCats() {
-  var template = document.getElementById("cat-template").innerHTML
-  var previousId = parseInt($(".js-previous").attr("data-id"));
-  $.getJSON("/agencies/" + previousId + "/cats.json", function(data) {
-    var cats = data
 
-    var templateScript = Handlebars.compile(template);
-    var result = templateScript(cats);
-    document.getElementsByTagName("main")[0].innerHTML += result;
-  })
-  // var template = Handlebars.compile(document.getElementById("issue-template").innerHTML);
-  // var result = template(issues);
-  // document.getElementsByTagName("main")[0].innerHTML += result;
-}
 
 function catShowPage(catId){
   var agencyId = parseInt($(".js-previous").attr("data-id"))

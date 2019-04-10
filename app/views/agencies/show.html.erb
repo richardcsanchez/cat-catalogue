@@ -76,7 +76,7 @@
     <%=f.text_field :image %> <br>
     <br>
     <%= f.label :agency_id, "Adoption Agency:"%> <br>
-    <%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || params[:agency_id])%><br>
+    <%= f.select :agency_id, options_for_select([@agency.name])%><br>
     <br>
     <%= f.submit "Submit" %>
     <%end%>

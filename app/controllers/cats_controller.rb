@@ -1,6 +1,8 @@
 class CatsController < ApplicationController
   before_action :admin_access_only, only: [:new, :create]
   before_action :your_cat, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:new]
+
 
   def index
     if @agency = Agency.find_by_id(params[:agency_id])
@@ -33,7 +35,7 @@ class CatsController < ApplicationController
     @cat = Cat.new(cat_params)
     @cat.user_id = current_user.id
      if @cat.save
-       render json: @cat
+       render json: @cat 
      else
        render :new
      end

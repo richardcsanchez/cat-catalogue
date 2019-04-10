@@ -11,17 +11,20 @@
   <h3>Filter Cats:</h3>
     <%= form_tag('/cats/filter', method: "get") do %>
     <%= select_tag :state, options_for_select(us_states), include_blank: true %>
-    <%= submit_tag "Filter by State" %>
-
+    <%=submit_tag "Filter by State",  class:  "small-button"   %>
+<br>
     <%= select_tag :breed, options_for_select(Cat.all_adoptable_breeds), include_blank: true %>
-    <%= submit_tag "Filter by Breed" %>
+    <%= submit_tag "Filter by Breed", class:  "small-button" %>
 
  <% end %>
+<br>
 
- <%=link_to 'Sort By Cost', cats_filter_by_cost_path%>
+ <button class="small-button" onClick="filterByCost()">Sort By Cost (High to Low)</button>
 
-  <ul>
-    <div><%@cats.each do |cat|%>
+<br>
+<br>
+    <div>
+      <%@cats.each do |cat|%>
       <button class="cats-index-list" id="<%=cat.id%>" onClick="showCat(this.id)">
           <p class="cat-agency" ><%=cat.agency_id%></p>
           <img id="cat-image" src=<%=cat.image%>>
@@ -33,7 +36,6 @@
           <%end%>
       </div>
 
-      </ul>
 
   <%end%>
 <br><br><br>

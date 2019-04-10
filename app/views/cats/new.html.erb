@@ -1,36 +1,6 @@
 <h1>Add a new cat!</h1>
 
-<%= form_for @cat do |f|%>
-
-<%=f.label 'name'':'%> <br>
-<%=f.text_field :name %> <br>
-<br>
-<%=f.label 'breed'':'%> <br>
-<%=f.text_field :breed %> <br>
-<br>
-<%=f.label 'age'':'%> <br>
-<%=f.text_field :age %> <br>
-<br>
-<%=f.label 'sex'':'%> <br>
-<%=f.select :sex, options_for_select(['Unknown', 'Male', 'Female'], selected: @cat.sex || nil), include_blank: true%><br>
-<br>
-<%= f.label 'disposition'':' %><br>
-<%= f.text_field :disposition%><br>
-<br>
-<%= f.label :cost, "Cost to Adopt:" %><br>
-$<%= f.text_field :cost%><br>
-<br>
-<%= f.label :neutered, "Spayed/Neutered?" %><br>
-<%= f.check_box :neutered%> Yes <br>
-<br>
-<%=f.label 'image', "Image Link:"%> <br>
-<%=f.text_field :image %> <br>
-<br>
-<%= f.label :agency_id, "Adoption Agency:"%> <br>
-<%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || params[:agency_id])%><br>
-<br>
-<%= f.submit "Submit" %>
-<%end%>
+<%# <%= render :form %> %>
 
 <br>
 <div id="postResult">
@@ -39,56 +9,58 @@ $<%= f.text_field :cost%><br>
 <br>
 <%= link_to 'Back', cats_path%>
 
-
+<div class="new-cat-info">
+  <
+</div>
+<script type="text/javascript" charset="utf-8"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<script type="text/javascript" charset="utf-8">
-
-  $(function() {
-   setupCreateCat();
- });
-
- function createCat(url, data) {
-   $.post(url, data, "json")
-     .done(json => {
-       let newCat = new Cat(json);
-          console.log(newCat)
-       newCat.updateHTML();
-     })
-     .error(resp => {
-       alert("There is an error!", resp);
-     });
- }
-
-class Cat {
-  constructor(name, breed, age, sex, disposition, cost, adopted, user_id, neutered, image, agency_id, owner_id) {
-     this.name = name
-     this.breed = breed
-     this.age = age
-     this.sex = sex
-     this.disposition = disposition
-     this.cost = cost
-     this.adopted = adopted
-     this.user_id = user_id
-     this.neutered = neutered
-     this.image = image
-     this.agency_id = agency_id
-     this.owner_id = owner_id
-   }
-
-   updateHTML() {
-     document.getElementById(".cat-name").text(this.data["name"]);
-   }
-}
-
- function setupCreateCat() {
-   $("form").submit(function(event) {
-     event.preventDefault();
-     let values = $(this).serialize();
-     let url = $(this).attr("action");
-
-     createCat(url, values);
-   });
- }
-
-</script>
+<!-- //   $(function() {
+//    setupCreateCat();
+//  });
+//
+//  function createCat(url, data) {
+//    $.post(url, data, "json")
+//      .done(json => {
+//        let newCat = new Cat(json);
+//           console.log(newCat)
+//        newCat.updateHTML();
+//      })
+//      .error(resp => {
+//        alert("There is an error!", resp);
+//      });
+//  }
+//
+// class Cat {
+//   constructor(name, breed, age, sex, disposition, cost, adopted, user_id, neutered, image, agency_id, owner_id) {
+//      this.name = name
+//      this.breed = breed
+//      this.age = age
+//      this.sex = sex
+//      this.disposition = disposition
+//      this.cost = cost
+//      this.adopted = adopted
+//      this.user_id = user_id
+//      this.neutered = neutered
+//      this.image = image
+//      this.agency_id = agency_id
+//      this.owner_id = owner_id
+//    }
+//
+//    updateHTML() {
+//      document.getElementById(".cat-name").text(this.data["name"]);
+//    }
+// }
+//
+//  function setupCreateCat() {
+//    $("form").submit(function(event) {
+//      event.preventDefault();
+//      let values = $(this).serialize();
+//      let url = $(this).attr("action");
+//
+//      createCat(url, values);
+//    });
+//  }
+//
+// -->

@@ -29,8 +29,8 @@
 
 
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
-  <button class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
+  <button id="cat-index-button" class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
+  <button id="new-cat-button" class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
 </div>
 
 <div class="tabcontent" class="cats" id="Cats" class="cats-index"  data-id="<%=@agency.id%>">
@@ -46,13 +46,43 @@
 </div>
 
 
-<div id="New Cat" class="tabcontent">
+<div id="New Cat"  class="tabcontent">
 
-  <div id="new cat form">
-    <%=render "cats/form"%>
+  <div id="new-cat-form">
+    <%= form_for @cat do |f|%>
+
+    <%=f.label 'name'':'%> <br>
+    <%=f.text_field :name %> <br>
+    <br>
+    <%=f.label 'breed'':'%> <br>
+    <%=f.text_field :breed %> <br>
+    <br>
+    <%=f.label 'age'':'%> <br>
+    <%=f.text_field :age %> <br>
+    <br>
+    <%=f.label 'sex'':'%> <br>
+    <%=f.select :sex, options_for_select(['Unknown', 'Male', 'Female'], selected: @cat.sex || nil), include_blank: true%><br>
+    <br>
+    <%= f.label 'disposition'':' %><br>
+    <%= f.text_field :disposition%><br>
+    <br>
+    <%= f.label :cost, "Cost to Adopt:" %><br>
+    $<%= f.text_field :cost%><br>
+    <br>
+    <%= f.label :neutered, "Spayed/Neutered?" %><br>
+    <%= f.check_box :neutered%> Yes <br>
+    <br>
+    <%=f.label 'image', "Image Link:"%> <br>
+    <%=f.text_field :image %> <br>
+    <br>
+    <%= f.label :agency_id, "Adoption Agency:"%> <br>
+    <%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || params[:agency_id])%><br>
+    <br>
+    <%= f.submit "Submit" %>
+    <%end%>
   </div>
 
-  <div id="postResult">
+  <div id="new-cat-show">
     <h2 id="catName"></h2>
     </div>
 </div>

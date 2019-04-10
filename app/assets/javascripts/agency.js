@@ -78,7 +78,7 @@ $(document).ready(function(){
          $("#new-cat-show").html(htmlToAdd)
 
          const buttonToAdd = newCat.appendButton()
-         $('#Cats').html(buttonToAdd)
+         $('#Cats').append(buttonToAdd)
     })
 
   })

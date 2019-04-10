@@ -49,6 +49,8 @@
 <div id="New Cat"  class="tabcontent">
 
   <div id="new-cat-form">
+    <h2> Add a New Cat </h2>
+
     <%= form_for @cat do |f|%>
 
     <%=f.label 'name'':'%> <br>
@@ -76,14 +78,14 @@
     <%=f.text_field :image %> <br>
     <br>
     <%= f.label :agency_id, "Adoption Agency:"%> <br>
-    <%= f.select :agency_id, options_for_select([@agency.name])%><br>
-    <br>
+    <%= f.select :agency_id, options_for_select([@agency])%><br>
     <%= f.submit "Submit" %>
     <%end%>
   </div>
 
   <div id="new-cat-show">
-    <h2 id="catName"></h2>
+
+
     </div>
 </div>
 </div>

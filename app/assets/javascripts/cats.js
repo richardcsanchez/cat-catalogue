@@ -9,7 +9,7 @@ function showCat(catId){
 
 
 function Cat(cat) {
-    this.id = cat.id
+      this.id = cat.id
      this.name = cat.name
      this.breed = cat.breed
      this.age = cat.age

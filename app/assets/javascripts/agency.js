@@ -70,8 +70,8 @@ $(document).ready(function(){
 
     $.post('/cats', values)
       .done(function(data) {
-        $('#new_cat').trigger("reset").hide();
-        $()
+        $('#new_cat').trigger("reset");
+        $('#new-cat-form').hide()
         const newCat = new Cat(data)
 
         const htmlToAdd = newCat.catInfo()

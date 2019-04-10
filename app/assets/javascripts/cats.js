@@ -9,6 +9,7 @@ function showCat(catId){
 
 
 function Cat(cat) {
+    this.id = cat.id
      this.name = cat.name
      this.breed = cat.breed
      this.age = cat.age
@@ -25,15 +26,17 @@ function Cat(cat) {
 
   Cat.prototype.catInfo = function () {
      let catParagraph =
-     `<p>${this.name} is a ${this.age} year old ${this.breed} cat. It is known for being ${this.disposition}. <p>`
+     `<img id="cat-image" src=${this.image}>
+     <br>
+     <p>${this.name} is a ${this.age} year old ${this.breed} cat. It is known for being ${this.disposition}. <p>`
 
      return catParagraph
    }
 
    Cat.prototype.appendButton = function () {
      let button = `
-     <button class="cats-index-list" id=${this.id} onClick="catShowPage(this.id)">
-         <p class="cat-id" data-id="${this.id}">${this.id}</p>
+     <button class="cats-index-list" id=${this.id} onClick="catShowPage(${this.id})">
+         <p class="cat-id" data-id="${this.id}"><%=cat.id%></p>
          <img id="cat-image" src=${this.image}>
          <p>${this.name}</p>
          <p>${this.breed}</p>

@@ -49,6 +49,18 @@
 <div id="New Cat"  class="tabcontent">
 
   <div id="new-cat-form">
+    <% if @cat.errors.any? %>
+      <div id="error_explanation">
+        <h4>We were unable to save this cat...</h4>
+
+        <ul>
+        <% @cat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <h2> Add a New Cat </h2>
 
     <%= form_for @cat do |f|%>
@@ -78,7 +90,7 @@
     <%=f.text_field :image %> <br>
     <br>
     <%= f.label :agency_id, "Adoption Agency:"%> <br>
-    <%= f.select :agency_id, options_for_select([@agency])%><br>
+    <%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || params[:agency_id])%><br>
     <%= f.submit "Submit" %>
     <%end%>
   </div>

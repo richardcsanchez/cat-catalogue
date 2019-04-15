@@ -25,10 +25,16 @@ function Cat(cat) {
 }
 
   Cat.prototype.catInfo = function () {
+    let catDisposition = this.disposition.toLowerCase()
+    let catBreed = this.breed.toLowerCase()
      let catParagraph =
-     `<img id="cat-image" src=${this.image}>
-     <br>
-     <p>${this.name} is a ${this.age} year old ${this.breed} cat. It is known for being ${this.disposition}. <p>`
+    `<button class="cats-index-list" id="${this.id}" onClick="catShowPage(${this.id})">
+        <p class="cat-id" data-id="${this.id}">${this.id}</p>
+        <img id="cat-image" src=${this.image}>
+        <p>${this.name} is a ${this.age} year old ${catBreed} cat.
+        It is known for being ${catDisposition}. For $${this.cost}, this cat can be adopted!</p>
+        </button>
+     `
 
      return catParagraph
    }

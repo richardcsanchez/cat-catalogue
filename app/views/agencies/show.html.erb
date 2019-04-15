@@ -91,14 +91,15 @@
     <br>
     <%= f.label :agency_id, "Adoption Agency:"%> <br>
     <%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || params[:agency_id])%><br>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", data: { disable_with: false } %>
     <%end%>
   </div>
 
   <div id="new-cat-show">
-
-
     </div>
+    <button id="newCatFormReload" class="small-button">Add another cat!</button>
+    <br>
+    <br>
 </div>
 </div>
 <script type="text/javascript" charset="utf-8"></script>

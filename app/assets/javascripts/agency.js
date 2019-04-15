@@ -70,16 +70,30 @@ $(document).ready(function(){
 
     $.post('/cats', values)
       .done(function(data) {
-        $('#new_cat').trigger("reset");
+
+        $('#new_cat').trigger("reset")
+
         $('#new-cat-form').hide()
+
         const newCat = new Cat(data)
 
         const htmlToAdd = newCat.catInfo()
+        $("#new-cat-show").show()
          $("#new-cat-show").html(htmlToAdd)
 
          const buttonToAdd = newCat.appendButton()
          $('#Cats').append(buttonToAdd)
-    })
 
+         $('#newCatFormReload').css('display','block');
+    })
+  })
+})
+
+
+$(document).ready(function(){
+  $('#newCatFormReload').on("click", function(e){
+    $('#new-cat-form').show()
+    $("#new-cat-show").hide()
+    $('#newCatFormReload').hide()
   })
 })

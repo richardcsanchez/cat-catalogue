@@ -29,12 +29,13 @@
 
 
 <div class="tab">
-  <button id="cat-index-button" class="tablinks" onclick="openTab(event, 'Cats')">Cats at this Agency</button>
-  <button id="new-cat-button" class="tablinks" onclick="openTab(event, 'New Cat')">New Cat</button>
+  <button id="cat-index-button" class="tablinks">Cats at this Agency</button>
+  <button id="new-cat-button" class="tablinks" ">New Cat</button>
 </div>
 
-<div class="tabcontent" class="cats" id="Cats" class="cats-index"  data-id="<%=@agency.id%>">
-    <div><%@agency.cats.adoptable.each do |cat|%>
+<div  class="cats-index tabcontent" data-id="<%=@agency.id%>">
+<div>
+    <%@agency.cats.adoptable.each do |cat|%>
     <button class="cats-index-list" id="<%=cat.id%>" onClick="catShowPage(this.id)">
         <p class="cat-id" data-id="<%=cat.id%>"><%=cat.id%></p>
         <img id="cat-image" src=<%=cat.image%>>
@@ -46,20 +47,9 @@
 </div>
 
 
-<div id="New Cat"  class="tabcontent">
+<div id="New Cat"  class="tabcontent newCat">
 
-  <div id="new-cat-form">
-    <% if @cat.errors.any? %>
-      <div id="error_explanation">
-        <h4>We were unable to save this cat...</h4>
-
-        <ul>
-        <% @cat.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <div id="new-cat-form" agencyId="<%=@agency.id%>">
 
     <h2> Add a New Cat </h2>
 
@@ -90,13 +80,16 @@
     <%=f.text_field :image %> <br>
     <br>
     <%= f.label :agency_id, "Adoption Agency:"%> <br>
-    <%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || params[:agency_id])%><br>
-    <%= f.submit "Submit", data: { disable_with: false } %>
+    <%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || @agency.id)%><br>
+    <br>
+    <%= f.submit "Submit", data: { disable_with: false }, class:  "small-button" %>
     <%end%>
   </div>
 
   <div id="new-cat-show">
     </div>
+    <br>
+    <br>
     <button id="newCatFormReload" class="small-button">Add another cat!</button>
     <br>
     <br>

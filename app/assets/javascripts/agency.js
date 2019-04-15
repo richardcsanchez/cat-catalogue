@@ -18,36 +18,42 @@
 //2. prepopulated forms
 //3. allows user to save new information about cat or delete or cancel
 
-function openTab(evt, tab) {
-  var i, tabcontent, tablinks;
+// function openTab(evt, tab) {
+//   var i, tabcontent, tablinks;
+//
+//   tabcontent = document.getElementsByClassName("tabcontent");
+//   for (i = 0; i < tabcontent.length; i++) {
+//     tabcontent[i].style.display = "none";
+//   }
+//
+//   tablinks = document.getElementsByClassName("tablinks");
+//   for (i = 0; i < tablinks.length; i++) {
+//     tablinks[i].className = tablinks[i].className.replace(" active", "");
+//   }
+//
+//   document.getElementById(tab).style.display = "block";
+//   evt.currentTarget.className += " active";
+//
+// }
+$(document).ready(function(){
+  $("#cat-index-button").on("click", function() {
+    $('.cats-index').show()
+    $('.newCat').hide()
 
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
+    let agencyId = parseInt($(".agency-show").attr("data-id"))
+    console.log(agencyId)
 
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
+    fetch('/agencies/' + agencyId + '/cats.json')
 
-  document.getElementById(tab).style.display = "block";
-  evt.currentTarget.className += " active";
+  })
 
-}
+  $('#new-cat-button').on("click", function() {
+    $('.cats-index').hide()
+    $('.newCat').show()
+  })
 
+  })
 
-
-$(function (){
-  $(".js-previous").on("click", function() {
-    var previousId = parseInt($(".js-previous").attr("data-id")) - 1;
-  $.getJSON("/agencies/" + previousId + "/cats.json", function(data) {
-        $("cat-name").text(data["name"]);
-        $("cat-breed").text(data["name"]);
-        $("cat-img").attr('src', data["image"]);
-      })
-})
-})
 
 function catShowPage(catId){
   var agencyId = parseInt($(".agency-show").attr("data-id"))
@@ -82,7 +88,7 @@ $(document).ready(function(){
          $("#new-cat-show").html(htmlToAdd)
 
          const buttonToAdd = newCat.appendButton()
-         $('#Cats').append(buttonToAdd)
+         $('.cats-index').append(buttonToAdd)
 
          $('#newCatFormReload').css('display','block');
     })

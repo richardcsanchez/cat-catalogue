@@ -39,6 +39,7 @@ function Cat(cat) {
      return catParagraph
    }
 
+
    Cat.prototype.appendButton = function () {
      let button = `
      <button class="cats-index-list" id=${this.id} onClick="catShowPage(${this.id})">

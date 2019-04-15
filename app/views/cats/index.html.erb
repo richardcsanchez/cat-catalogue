@@ -1,7 +1,7 @@
 <h1>Cats Index</h1>
 
-<%if @agency%>
-  <h4>Cats at <%=link_to @agency.name, agency_path(@agency)%></h4>
+<%if @agency %>
+  <h4> Cats at <%=link_to @agency.name, agency_path(@agency)%></h4>
 
   <%@agency.cats.adoptable.each do |c|%>
   <ul><%=link_to c.name, agency_cat_path(c.agency, c)%> -<%=c.breed%></ul>

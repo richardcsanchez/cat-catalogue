@@ -8,7 +8,7 @@
 <p class="sex"><span style="font-weight:bold">Sex:</span> <%=@cat.sex%></p>
 <p class="age"><%=@cat.age%>  Years Old</p>
 <p class="disposition"><span style="font-weight:bold">Disposition: </span> <%=@cat.disposition%></p>
-<p class="neutered"> <span style="font-weight:bold">Spayed/Neutered? </span><%=@cat.neutered%></p>
+<p class="neutered"> <span style="font-weight:bold">Spayed/Neutered? </span><%=@cat.neutered?%></p>
 <p class="cost"><span style="font-weight:bold">Cost to Adopt: </span> $<%=@cat.cost%></p>
 <h4>Owner:</h4>
   <% if @cat.owner_id != nil %>

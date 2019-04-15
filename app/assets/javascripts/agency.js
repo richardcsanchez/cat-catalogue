@@ -39,21 +39,30 @@ $(document).ready(function(){
   $("#cat-index-button").on("click", function() {
     $('.cats-index').show()
     $('.newCat').hide()
-
-    let agencyId = parseInt($(".agency-show").attr("data-id"))
-    console.log(agencyId)
-
-    fetch('/agencies/' + agencyId + '/cats.json')
-
-  })
+    })
 
   $('#new-cat-button').on("click", function() {
-    $('.cats-index').hide()
-    $('.newCat').show()
+      $('.cats-index').hide()
+      $('.newCat').show()
+    })
   })
 
-  })
+$(document).ready(function() {
+  $("#cat-index-button").one("click", function() {
+  let agencyId = parseInt($(".agency-show").attr("data-id"))
+    fetch('/agencies/' + agencyId + '/cats.json')
+      .then(res => res.json())
+      .then(cats => {
+        cats.forEach(cat => {
 
+          let newCat = new Cat(cat)
+          let catHTML = newCat.appendButton()
+          $('.cats-index').append(catHTML)
+        })
+      })
+    })
+  }
+)
 
 function catShowPage(catId){
   var agencyId = parseInt($(".agency-show").attr("data-id"))

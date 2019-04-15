@@ -33,17 +33,9 @@
   <button id="new-cat-button" class="tablinks" ">New Cat</button>
 </div>
 
-<div  class="cats-index tabcontent" data-id="<%=@agency.id%>">
-<div>
-    <%@agency.cats.adoptable.each do |cat|%>
-    <button class="cats-index-list" id="<%=cat.id%>" onClick="catShowPage(this.id)">
-        <p class="cat-id" data-id="<%=cat.id%>"><%=cat.id%></p>
-        <img id="cat-image" src=<%=cat.image%>>
-        <p><%=cat.name%></p>
-        <p><%=cat.breed%></p>
-        </button>
-        <%end%>
-      </div>
+<div class="cats-index tabcontent" data-id="<%=@agency.id%>">
+
+
 </div>
 
 

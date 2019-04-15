@@ -37,18 +37,18 @@
 // }
 $(document).ready(function(){
   $("#cat-index-button").on("click", function() {
-    $('.cats-index').show()
+    $('.cats-index').toggle()
     $('.newCat').hide()
     })
 
   $('#new-cat-button').on("click", function() {
+      $('.newCat').toggle()
       $('.cats-index').hide()
-      $('.newCat').show()
     })
   })
 
-$(document).ready(function() {
-  $("#cat-index-button").one("click", function() {
+$(window).load(function() {
+  $('.newCat').hide()
   let agencyId = parseInt($(".agency-show").attr("data-id"))
     fetch('/agencies/' + agencyId + '/cats.json')
       .then(res => res.json())
@@ -58,11 +58,24 @@ $(document).ready(function() {
           let newCat = new Cat(cat)
           let catHTML = newCat.appendButton()
           $('.cats-index').append(catHTML)
-        })
+
       })
     })
   }
 )
+
+// $(document).ready(function(catId){
+//   var agencyId = parseInt($(".agency-show").attr("data-id"))
+//   // var catId = parseInt($(".cat-index-list").attr("data-id"))
+//   fetch('/agencies/' + agencyId + '/cats/' + catId)
+//     .then(res => res.json())
+//     .then(cat => {
+//       let newCat = new Cat(cat)
+//       let catHTML = newCat.catInfo()
+//       $(".cat-data").append(catHTML)
+//     })
+//   })
+
 
 function catShowPage(catId){
   var agencyId = parseInt($(".agency-show").attr("data-id"))

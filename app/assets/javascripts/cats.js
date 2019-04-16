@@ -42,8 +42,9 @@ function Cat(cat) {
 
    Cat.prototype.appendButton = function () {
      let button = `
-     <button class="cats-index-list" id=${this.id} onClick="catShowPage(${this.id})">
-         <p class="cat-id" data-id="${this.id}"><%=cat.id%></p>
+     <button class="cats-index-list" id="${this.id}" onClick="catShowPage(${this.id})">
+         <p class="cat-id" data-id="${this.id}">${this.id}</p>
+         <p class="agency-id" data-id="${this.agency_id}">${this.agency_id}</p>
          <img id="cat-image" src=${this.image}>
          <p>${this.name}</p>
          <p>${this.breed}</p>

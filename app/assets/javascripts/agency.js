@@ -64,23 +64,15 @@ $(window).load(function() {
   }
 )
 
-// $(document).ready(function(catId){
-//   var agencyId = parseInt($(".agency-show").attr("data-id"))
-//   // var catId = parseInt($(".cat-index-list").attr("data-id"))
-//   fetch('/agencies/' + agencyId + '/cats/' + catId)
-//     .then(res => res.json())
-//     .then(cat => {
-//       let newCat = new Cat(cat)
-//       let catHTML = newCat.catInfo()
-//       $(".cat-data").append(catHTML)
-//     })
-//   })
+
+
 
 
 function catShowPage(catId){
-  var agencyId = parseInt($(".agency-show").attr("data-id"))
+  var agencyId = parseInt($(".agency-id").attr("data-id"))
   window.location.href = "/agencies/" + agencyId + "/cats/" + catId
   }
+
 
 function agencyShowPage(agencyId){
   window.location.href= "/agencies/" + agencyId

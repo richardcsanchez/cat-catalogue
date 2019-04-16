@@ -24,20 +24,20 @@ function loadCatData() {
   }
 
   function loadCatIndex(){
-  $('.newCat').hide()
-  $('.cats-index').hide()
-  $('#cat-data').hide()
-    let agencyId = parseInt($(".agency-show").attr("data-id"))
-    fetch('/agencies/' + agencyId + '/cats.json')
-      .then(res => res.json())
-      .then(cats => {
-        cats.forEach(cat => {
-          let newCat = new Cat(cat)
-          let catHTML = newCat.appendButton()
-          $('.cats-index').append(catHTML)
+    $('.newCat').hide()
+    $('.cats-index').hide()
+    $('#cat-data').hide()
+      let agencyId = parseInt($(".agency-show").attr("data-id"))
+      fetch('/agencies/' + agencyId + '/cats.json')
+        .then(res => res.json())
+        .then(cats => {
+          cats.forEach(cat => {
+            let newCat = new Cat(cat)
+            let catHTML = newCat.appendButton()
+            $('.cats-index').append(catHTML)
+        })
       })
-    })
-  }
+    }
 
   function toggleTabs() {
     $("#cat-index-button").on("click", function() {
@@ -71,7 +71,7 @@ function loadCatData() {
            const buttonToAdd = newCat.appendButton()
            $('.cats-index').append(buttonToAdd)
            $('#newCatFormReload').css('display','block');
-      })
+        })
     })
   }
 

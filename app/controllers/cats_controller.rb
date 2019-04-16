@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
   before_action :admin_access_only, only: [:new, :create]
-  before_action :your_cat, only: [:show, :edit, :update, :destroy]
+  before_action :your_cat, only: [:edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:new]
 
 

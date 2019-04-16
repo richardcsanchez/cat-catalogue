@@ -8,7 +8,7 @@ class CatsController < ApplicationController
     if @agency = Agency.find_by_id(params[:agency_id])
       @cats = @agency.cats.adoptable
       respond_to do |format|
-        format.html { render :show }
+        format.html { render :index }
         format.json { render json: @cats }
       end
     elsif !params[:state].blank? && Agency.find_by_state(params[:state])
@@ -35,7 +35,7 @@ class CatsController < ApplicationController
     @cat = Cat.new(cat_params)
     @cat.user_id = current_user.id
      if @cat.save
-       render json: @cat 
+       render json: @cat
      else
        render :new
      end

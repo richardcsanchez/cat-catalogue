@@ -2,7 +2,7 @@
     <h4><div class="notice"><%= flash[:notice] %></div><h4>
 <% end %>
 <div class="cat-info">
-<h1 class="name"><%=@cat.name%></h1>
+<h1 class="name"><%=@cat.name %> </h1>
 <h4 class="agency"><%=link_to @cat.agency.name, agency_path(@cat.agency)%></h4>
 <p class="breed"><span style="font-weight:bold">Breed:</span> <%=@cat.breed%></p>
 <p class="sex"><span style="font-weight:bold">Sex:</span> <%=@cat.sex%></p>

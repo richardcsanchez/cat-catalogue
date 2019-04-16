@@ -33,39 +33,11 @@
 <div id="New Cat"  class="tabcontent newCat">
 
   <div id="new-cat-form" agencyId="<%=@agency.id%>">
-
-    <h2> Add a New Cat </h2>
-
-    <%= form_for @cat do |f|%>
-
-    <%=f.label 'name'':'%> <br>
-    <%=f.text_field :name %> <br>
     <br>
-    <%=f.label 'breed'':'%> <br>
-    <%=f.text_field :breed %> <br>
-    <br>
-    <%=f.label 'age'':'%> <br>
-    <%=f.text_field :age %> <br>
-    <br>
-    <%=f.label 'sex'':'%> <br>
-    <%=f.select :sex, options_for_select(['Unknown', 'Male', 'Female'], selected: @cat.sex || nil), include_blank: true%><br>
-    <br>
-    <%= f.label 'disposition'':' %><br>
-    <%= f.text_field :disposition%><br>
-    <br>
-    <%= f.label :cost, "Cost to Adopt:" %><br>
-    $<%= f.text_field :cost%><br>
-    <br>
-    <%= f.label :neutered, "Spayed/Neutered?" %><br>
-    <%= f.check_box :neutered%> Yes <br>
-    <br>
-    <%=f.label 'image', "Image Link:"%> <br>
-    <%=f.text_field :image %> <br>
-    <br>
-    <%= f.label :agency_id, "Adoption Agency:"%> <br>
-    <%= f.select :agency_id, options_for_select(Agency.all_agencies, selected: @cat.agency_id || @agency.id)%><br>
-    <br>
-    <%= f.submit "Submit", data: { disable_with: false }, class:  "small-button" %>
+    <% if current_user.admin? %>
+    <%= render 'cats/form' %>
+    <%else%>
+    <p> You don't have access to this form! </p>
     <%end%>
   </div>
 

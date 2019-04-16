@@ -17,23 +17,16 @@
 
 <br>
 <br>
-<br>
-<%if current_user.admin?%>
-<%= link_to "New Cat", new_agency_cat_path(@agency.id)%>
-<%end%>
-<br>
-<br>
 
 
-<div class="tab">
-  <button id="cat-index-button" class="tablinks">Cats at this Agency</button>
-  <button id="new-cat-button" class="tablinks" ">New Cat</button>
+
+<div class="tab" >
+  <button id="cat-index-button" class="tablinks" >Cats at this Agency </button>
+  <button id="new-cat-button" class="tablinks"> New Cat </button>
 </div>
-
-<div class="cats-index tabcontent" data-id="<%=@agency.id%>">
-
-  <div id="cat-data">
-    </div>
+<div class="tabcontent">
+  <div class="cats-index" data-id="<%=@agency.id%>"></div>
+  <div id="cat-data"></div>
 </div>
 
 
@@ -76,8 +69,7 @@
     <%end%>
   </div>
 
-  <div id="new-cat-show">
-    </div>
+  <div id="new-cat-show"></div>
     <br>
     <br>
     <button id="newCatFormReload" class="small-button">Add another cat!</button>
@@ -85,4 +77,3 @@
     <br>
 </div>
 </div>
-<script type="text/javascript" charset="utf-8"></script>

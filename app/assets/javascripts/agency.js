@@ -3,9 +3,10 @@ $(document).ready(function() {
   toggleTabs()
   newCat()
   newCatFormReload()
+  loadCatData()
 })
 
-$(document).ready(function() {
+function loadCatData() {
   $(".cats-index").on("click", function(e){
     var button = $( e.target ).closest( "button" )
     var catId = parseInt(button.attr("id"))
@@ -19,16 +20,8 @@ $(document).ready(function() {
           $("#cat-data").show()
           $("#cat-data").html(catHTML)
         })
-  })
-  })
-//   $('button#cats-index-list').on("click", function() {
-//     console.log("click")
-//   //   var $li = $(this).closest('li')
-//   //
-//   //   })
-//   })
-// })
-
+      })
+  }
 
   function loadCatIndex(){
   $('.newCat').hide()
@@ -90,10 +83,11 @@ $(document).ready(function() {
     })
   }
 
-  // function catShowPage(catId){
-  //   var agencyId = parseInt($(".agency-id").attr("data-id"))
-  //   window.location.href = "/agencies/" + agencyId + "/cats/" + catId
-  //   }
+
+  function catShowPage(catId){
+      var agencyId = parseInt($(".agency-id").attr("data-id"))
+      window.location.href = "/agencies/" + agencyId + "/cats/" + catId
+    }
 
   function agencyShowPage(agencyId){
     window.location.href= "/agencies/" + agencyId
@@ -101,15 +95,4 @@ $(document).ready(function() {
 
   function editAgency(agencyId){
     window.location.href= "/agencies/" + agencyId + "/edit"
-  }
-
-  function Agency(agency) {
-    this.name = agency.name
-    this.street_1 = agency.street_1
-    this.street_2 = agency.street_2
-    this.city = agency.city
-    this.state = agency.state
-    this.zip_code = agency.zip_code
-    this.email = agency.email
-    this.phone_number = agency.phone_number
   }

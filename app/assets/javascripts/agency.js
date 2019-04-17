@@ -55,7 +55,6 @@ function loadCatData() {
 
   function newCat(){
     $("#new_cat").on("submit", function(e){
-      e.preventDefault()
       const values = $(this).serialize()
 
       $.post('/cats', values)
@@ -72,6 +71,7 @@ function loadCatData() {
            $('.cats-index').append(buttonToAdd)
            $('#newCatFormReload').css('display','block');
         })
+        e.preventDefault()  
     })
   }
 

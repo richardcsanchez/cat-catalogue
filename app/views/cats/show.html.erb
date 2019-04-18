@@ -28,17 +28,18 @@
 <br>
 <br>
 <br>
+<br>
 <% if !@cat.adopted?%>
-<h4><%= link_to 'Adopt Me!', adopt_cat_path(@cat)%></h4>
+<button class="small-button"><%= link_to 'Adopt Me!', adopt_cat_path(@cat)%></button>
 <%end%>
 <br>
 <br>
 
 
 <% if current_user.admin? || @cat.owner_id == current_user.id %>
-<%= link_to "Edit Cat", edit_agency_cat_path(@cat)%>
-<%= link_to 'Delete',
+<button class="small-button"><%= link_to "Edit Cat", edit_agency_cat_path(@cat)%></button> 
+<button class="small-button"><%= link_to 'Delete',
              cat_path(@cat),
                          method: :delete,
-                         data: { confirm: 'Are you sure?' } %>
+                         data: { confirm: 'Are you sure?' } %></button>
 <%end%>

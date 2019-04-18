@@ -9,7 +9,7 @@ function showCat(catId){
 
 
 function Cat(cat) {
-      this.id = cat.id
+     this.id = cat.id
      this.name = cat.name
      this.breed = cat.breed
      this.age = cat.age
@@ -28,9 +28,7 @@ function Cat(cat) {
     let catDisposition = this.disposition.toLowerCase()
     let catBreed = this.breed.toLowerCase()
      let catParagraph =
-    `<button class="cats-index-list" id="${this.id}" onClick="catShowPage(${this.id})">
-        <p class="cat-id" data-id="${this.id}">${this.id}</p>
-        <p class="agency-id" data-id="${this.agency_id}">${this.agency_id}</p>
+    `<button class="cats-index-list" id="${this.id}" agency_id="${this.agency_id}" onClick="catShowPage(${this.id})">
         <img id="cat-image" src=${this.image}>
         <p>${this.name} is a ${this.age} year old ${catBreed} cat.
         It is known for being ${catDisposition}. For $${this.cost}, this cat can be adopted!</p>
@@ -43,9 +41,7 @@ function Cat(cat) {
 
    Cat.prototype.appendButton = function () {
      let button = `
-     <button class="cats-index-list" id="${this.id}" >
-         <p class="cat-id" data-id="${this.id}">${this.id}</p>
-         <p class="agency-id" data-id="${this.agency_id}">${this.agency_id}</p>
+     <button class="cats-index-list" id="${this.id}" agency_id="${this.agency_id}">
          <img id="cat-image" src=${this.image}>
          <p>${this.name}</p>
          <p>${this.breed}</p>

@@ -10,7 +10,7 @@ function loadCatData() {
   $(".cats-index").on("click", function(e){
     var button = $( e.target ).closest( "button" )
     var catId = parseInt(button.attr("id"))
-    var agencyId = parseInt($(".agency-id").attr("data-id"))
+    var agencyId = parseInt(button.attr("agency_id"))
       fetch(agencyId + '/cats/' + catId + '.json')
         .then(res => res.json())
         .then(cat => {
@@ -71,7 +71,7 @@ function loadCatData() {
            $('.cats-index').append(buttonToAdd)
            $('#newCatFormReload').css('display','block');
         })
-        e.preventDefault()  
+        e.preventDefault()
     })
   }
 
@@ -85,7 +85,7 @@ function loadCatData() {
 
 
   function catShowPage(catId){
-      var agencyId = parseInt($(".agency-id").attr("data-id"))
+      var agencyId = parseInt($(".cats-index-list").attr("agency_id"))
       window.location.href = "/agencies/" + agencyId + "/cats/" + catId
     }
 

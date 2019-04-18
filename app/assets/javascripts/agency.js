@@ -27,7 +27,7 @@ function loadCatData() {
     $('.newCat').hide()
     $('.cats-index').hide()
     $('#cat-data').hide()
-      let agencyId = parseInt($(".agency-show").attr("data-id"))
+      let agencyId = parseInt($(".agency-show").attr("agency_id"))
       fetch('/agencies/' + agencyId + '/cats.json')
         .then(res => res.json())
         .then(cats => {

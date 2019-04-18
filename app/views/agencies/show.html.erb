@@ -1,4 +1,4 @@
-<div class="agency-show" data-id="<%=@agency.id%>">
+<div class="agency-show" agency_id="<%=@agency.id%>">
 <h1 class="name" class="agency-name-header" id="agency_name" ><%= @agency.name %></h1>
 <h4 class="email" class="agency_info" ><%= @agency.email%></h4>
 <h4 class="phone_number" class="agency_info" ><%= number_to_phone(@agency.phone_number)%></h4>

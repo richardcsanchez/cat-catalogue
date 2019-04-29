@@ -4,7 +4,35 @@ $(document).ready(function() {
   newCat()
   newCatFormReload()
   loadCatData()
+  loadAgencyId()
 })
+
+function Agency(agency) {
+  this.name = agency.name
+}
+
+Agency.prototype.agencyInfo = function() {
+
+  const agencyName = `${this.name}`
+  return agencyName
+}
+
+function loadAgencyId(){
+  let agencyId = parseInt($(".agency-show").attr("agency_id"))
+  fetch('/agencies/' + agencyId + '.json')
+    .then(res => res.json())
+    .then(agency => {
+
+      let newAgency = new Agency(agency)
+      let agencyHTML = newAgency.agencyInfo()
+      $('.agency-name').append(agencyHTML)
+        // agency.forEach(cat => {
+      //   let newCat = new Cat(cat)
+      //   let catHTML = newCat.appendButton()
+      //   $('.cats-index').append(catHTML)
+    })
+  }
+
 
 function loadCatData() {
   $(".cats-index").on("click", function(e){

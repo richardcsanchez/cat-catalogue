@@ -2,18 +2,18 @@
 <html>
   <head>
     <title>CatCatalogue</title>
-    <%= csrf_meta_tags %>
+    <%=csrf_meta_tags%>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
      <%= javascript_include_tag "application" %>
   </head>
   <header class="header">
     <ul class="layout">
-    <%if logged_in?%>
-    <li class="header-link"><%=link_to 'Home', user_path(current_user)%></li>
-    <li class="header-link"><%=link_to 'All Cats', cats_adoptable_url%></li>
-    <li class="header-link"><%=link_to 'All Adoption Agencies', agencies_path%></li>
+    <% if logged_in? %>
+    <li class="header-link"> <%= link_to 'Home', user_path(current_user)%></li>
+    <li class="header-link"> <%= link_to 'All Cats', cats_adoptable_url%> </li>
+    <li class="header-link"> <%= link_to 'All Adoption Agencies', agencies_path%></li>
     <%end%>
     </ul>
   </header>

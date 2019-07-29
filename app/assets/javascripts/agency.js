@@ -14,7 +14,7 @@ function Agency(agency) {
 Agency.prototype.agencyInfo = function() {
 
   const agencyName = `${this.name}`
-  return agencyName
+
 }
 
 function loadAgencyId(){
